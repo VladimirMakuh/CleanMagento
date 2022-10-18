@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd"
+>
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">internship_storelocator_form.store_locator_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="spinner" xsi:type="string">internship_storelocator_form</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Elogic\Internship\Ui\Component\StoreLocator\Form\Button\Save"/>
+            <button name="back">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="reset">
+                <class>reset</class>
+                <label translate="true">Reset</label>
+                <url path="*/*/edit"/>
+            </button>
+        </buttons>
+        <namespace>internship_storelocator_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>internship_storelocator_form.store_locator_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="store_locator_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="internship/storelocator/save"/>
+        </settings>
+        <dataProvider class="Elogic\Internship\Ui\Component\StoreLocatorFormDataProvider"
+                      name="store_locator_form_data_source">
+            <settings>
+                <requestFieldName>store_entity_id</requestFieldName>
+                <primaryFieldName>store_entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="internship_storelocator_form">
+        <settings>
+            <label/>
+        </settings>
+        <field name="store_entity_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>store_entity_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="name" formElement="textarea" sortOrder="10">
+            <settings>
+                <dataScope>name</dataScope>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="description" formElement="textarea" sortOrder="20">
+            <settings>
+                <dataScope>description</dataScope>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="address" formElement="textarea" sortOrder="30">
+            <settings>
+                <dataScope>address</dataScope>
+                <dataType>text</dataType>
+                <label translate="true">Address</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="longitude" formElement="textarea" sortOrder="40">
+            <settings>
+                <dataScope>longitude</dataScope>
+                <dataType>text</dataType>
+                <label translate="true">Longitude</label>
+            </settings>
+        </field>
+        <field name="latitude" formElement="textarea" sortOrder="50">
+            <settings>
+                <dataScope>latitude</dataScope>
+                <dataType>text</dataType>
+                <label translate="true">Latitude</label>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="store_locator_form_image">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Image</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field formElement="imageUploader" name="image" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">store</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">internship/storelocator_image/upload</param>
+                        </uploaderConfig>
+                        <required>false</required>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <previewTmpl>Elogic_Internship/image-preview</previewTmpl>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="store_locator_form_schedule">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Schedule</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <dynamicRows name="schedule">
+            <settings>
+                <addButtonLabel translate="true">Add Schedule</addButtonLabel>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <componentType>dynamicRows</componentType>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+                <field name="day" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <label>Day</label>
+                    </settings>
+                </field>
+                <field name="from" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <label>From</label>
+                    </settings>
+                </field>
+                <field name="to" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <label>To</label>
+                    </settings>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="some-class">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+
+    </fieldset>
+    <fieldset name="store_locator_form_url">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Url key</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+            </item>
+        </argument>
+        <field name="store_url_key" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">store</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label>Url key</label>
+                <dataScope>store_url_key</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

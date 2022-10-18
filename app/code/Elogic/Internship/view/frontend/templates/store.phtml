@@ -1,0 +1,76 @@
+<?php
+
+/** @var \Elogic\Internship\Block\Store $block */
+$store = $block->getStore();
+?>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+<?php if (!is_null($store->getId())) : ?>
+    <div class="store">
+        <div id="store-<?= $store->getId() ?>" class="store">
+            <div class="description">
+                <h4><?= __("Description") ?></h4>
+                <span><?= $store->getDescription() ?></span>
+            </div>
+            <div class="image">
+                <h4><?= __("Image") ?></h4>
+                <?php if ($store->getImage() !== null): ?>
+                    <img src="<?= $block->getMediaUrl('elogic/base_path/' . $store->getImage()) ?>" alt="Store image"
+                         height="400" width="400"/>
+                <?php else: ?>
+                    <h5>Image not found</h5>
+                <?php endif; ?>
+            </div>
+            <div class="address">
+                <h4><?= __("Address") ?></h4>
+                <span><?= $store->getAddress() ?></span>
+            </div>
+            <?php if (!empty($store->getSchedule())): ?>
+                <div class="schedule">
+                    <h4><?= __("Schedule") ?></h4>
+                    <table>
+                        <tr>
+                            <th class="day">Day</th>
+                            <th class="from">From</th>
+                            <th class="to">To</th>
+                        </tr>
+                        <?php
+                        foreach ($block->unserializeSchedule($store) as $item) {
+                            echo '<tr>
+                                <td>' . $item['day'] . '</td>
+                                <td>' . $item['from'] . '</td>
+                                <td>' . $item['to'] . '</td>
+                              </tr>';
+                        }
+                        ?>
+                    </table>
+                </div>
+            <?php endif; ?>
+            <div class="longitude">
+                <h4><?= __("Longitude") ?></h4>
+                <span><?= $store->getLongitude() ?></span>
+            </div>
+            <div class="latitude">
+                <h4><?= __("Latitude") ?></h4>
+                <span><?= $store->getLatitude() ?></span>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
