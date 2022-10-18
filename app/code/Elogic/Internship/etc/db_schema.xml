@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="store_locator" resource="default" engine="innodb" comment="list of the store">
+        <column xsi:type="int" name="store_entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="100"
+                comment="store name"/>
+        <column xsi:type="text" name="description" nullable="false"
+                comment="description of the store"
+        />
+        <column xsi:type="varchar" name="image" nullable="false" length="255"
+                comment="image of the store"
+        />
+        <column xsi:type="varchar" name="address" nullable="false" length="255"
+                comment="store address"
+        />
+        <column xsi:type="text" name="schedule" nullable="false"
+                comment="store schedule "
+        />
+        <column xsi:type="varchar" name="longitude" nullable="false" length="40"
+                comment="cordinate of the store: longitude"
+        />
+        <column xsi:type="varchar" name="latitude" nullable="false" length="40"
+                comment="cordinate of the store: latitude"
+        />
+        <column name="store_url_key" xsi:type="varchar" comment="url key"
+        />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="store_entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="UNIQUE">
+            <column name="store_url_key"/>
+        </constraint>
+    </table>
+</schema>

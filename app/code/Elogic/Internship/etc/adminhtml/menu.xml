@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elogic_Internship::storelocator"
+             title="Store Locator"
+             translate="title"
+             module="Elogic_Internship"
+             sortOrder="10"
+             resource="Elogic_Internship::storelocator"
+        />
+        <add id="Elogic_Internship::store"
+             title="Stores"
+             translate="title"
+             module="Elogic_Internship"
+             sortOrder="10"
+             resource="Elogic_Internship::store"
+             action="internship/storelocator/index"
+             parent="Elogic_Internship::storelocator"
+         />
+        <add id="Elogic_Internship::config"
+             title="Configuration"
+             module="Elogic_Internship"
+             resource="Elogic_Internship::configuration"
+             sortOrder="50"
+             parent="Elogic_Internship::storelocator"
+             action="adminhtml/system_config/edit/section/storelocator"
+        />
+
+    </menu>
+</config>
