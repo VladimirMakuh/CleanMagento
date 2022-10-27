@@ -33,4 +33,10 @@
             <column name="store_url_key"/>
         </constraint>
     </table>
+    <table name="quote" resource="default" engine="innodb">
+        <column xsi:type="text" name="pick_up_store" nullable="true" comment="Pick up in store"/>
+    </table>
+    <table name="sales_order" resource="default" engine="innodb">
+        <column xsi:type="text" name="pick_up_store" nullable="true" comment="Pick up in store"/>
+    </table>
 </schema>

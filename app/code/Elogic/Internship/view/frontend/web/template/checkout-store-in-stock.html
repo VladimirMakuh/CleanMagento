@@ -8,8 +8,8 @@
             <div class="field-store-stock">
                 <!-- ko foreach: { data: getStoreStock(), as: 'product' } -->
                 <div class="from-checkout-store-select">
-                    <label  data-bind="text:  product.productName, attr: {for: 'product-stock-' + product.productId} "></label>
-                    <select data-bind="attr: {id: 'product-stock-' + product.productId}, attr: {name: 'product-stock-' + product.productId}">
+                    <label  data-bind="text:  product.productName, attr: {for: 'product-stock-' + product.productId, id: 'product-stock-label-' + product.productId} "></label>
+                    <select data-bind="attr: {id: 'product-stock-' + product.productId, name: 'product-stock-' + product.productId}">
                         <!-- ko foreach: { data: product.values, as: 'store' } -->
                         <option data-bind="value: store.storeId , text: store.storeName"></option>
                         <!-- /ko -->
