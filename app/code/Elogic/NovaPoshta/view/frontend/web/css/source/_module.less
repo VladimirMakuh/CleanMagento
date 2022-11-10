@@ -1,0 +1,30 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .delivery-type {
+      display: grid;
+      grid-template-rows: repeat(auto-fill, auto);
+      grid-gap: 10px;
+  }
+    .list-novaposhta{
+        list-style: none;
+    }
+    .delivery-novaposhta-department,
+    & .delivery-novaposhta-postbox,
+    & .delivery-novaposhta-city,
+    & .delivery-novaposhta-flat,
+    & .delivery-novaposhta-house,
+    & .delivery-novaposhta-street{
+        border: none;
+    }
+    .error-message{
+        color: #FF4023;
+    }
+    .validation-error{
+        margin-top: 5px;
+        display: none;
+    }
+
+}

@@ -1,0 +1,97 @@
+<!-- ko if:enable  -->
+<div id="shipping-delivery-form" class="shipping-delivery" >
+    <div class="step-title"
+         translate="'Delivery'"
+         data-role="title"></div>
+
+    <legend data-bind="i18n: 'Nova Poshta: '"></legend>
+    <ul class="list-novaposhta">
+        <li>
+            <div class="delivery-type">
+                <label class="radio">
+                    <input type="radio"  name="test" value="department" id="department" data-bind="checked: isDepartment,click: selectDepartment" >
+                    In Department
+                </label>
+                <label class="radio">
+                    <input type="radio" name="test" value="postbox" id="post-box" data-bind="checked: isDepartment, click: selectPostBox">
+                    In Post Box
+                </label>
+                <label class="radio">
+                    <input type="radio"  name="test" value="courier" id="courier" data-bind="checked: isDepartment, click: selectCourier">
+                    Courier
+                </label>
+            </div>
+        </li>
+        <li>
+            <fieldset class="delivery-novaposhta-city">
+                <div>
+                    <label for="delivery-city">City</label>
+                    <select name="delivery-city" id="delivery-city" data-bind="event: { change: getDepartment}">
+                        <!-- ko foreach: { data: data, as: 'city' } -->
+                        <option data-bind="value: city.Ref, text: city.Description"></option>
+                        <!-- /ko -->
+                    </select>
+                </div>
+            </fieldset>
+        </li>
+        <li>
+            <fieldset class="delivery-novaposhta-department">
+                <div>
+                    <label for="delivery-departmant">Departman</label>
+                    <select name="delivery-city" id="delivery-departmant" >
+                        <!-- ko foreach: { data: dataDepartment, as: 'department' } -->
+                        <option data-bind="value: department.SiteKey, text: department.Description"></option>
+                        <!-- /ko -->
+                    </select>
+                    <div class="validation-error" id="delivery-error-message-department">
+                        <span class="error-message">There are no branches in the selected city</span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="delivery-novaposhta-postbox" data-bind="visible: showpostbox">
+                    <div>
+                        <label for="delivery-post-box">Post Box</label>
+                        <select name="delivery-city" id="delivery-post-box">
+                            <!-- ko foreach: { data: dataDepartment, as: 'department' } -->
+                            <!--ko if: department.PostMachineType -->
+                            <option data-bind="value: department.SiteKey, text: department.Description"></option>
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </select>
+                        <div class="validation-error" id="delivery-error-message-postbox">
+                            <span class="error-message">There are no post boxes in the selected city</span>
+                        </div>
+                    </div>
+            </fieldset>
+        </li>
+        <li id="list-courier" data-bind="visible: showCourier">
+            <fieldset class="delivery-novaposhta-street">
+                <div>
+                    <label for="delivery-courier-street">Street</label>
+                    <select name="delivery-courier-street" id="delivery-courier-street">
+                        <!-- ko foreach: { data: dataStreet, as: 'street' } -->
+                        <option data-bind="value: street.Ref, text: street.Description"></option>
+                        <!-- /ko -->
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset class="delivery-novaposhta-house">
+                <div>
+                    <label>
+                        House
+                        <input type="text" minlength="3" maxlength="100" class="delivery-novaposhta-courier-house">
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset class="delivery-novaposhta-flat">
+                <div>
+                    <label>
+                        Flat
+                        <input type="text" minlength="3" maxlength="100" class="delivery-novaposhta-courier-flat">
+                    </label>
+                </div>
+            </fieldset>
+        </li>
+    </ul>
+</div>
+<!-- /ko -->
