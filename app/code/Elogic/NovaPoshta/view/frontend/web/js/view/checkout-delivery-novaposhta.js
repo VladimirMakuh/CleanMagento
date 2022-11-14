@@ -2,11 +2,26 @@ define([
     'Magento_Ui/js/form/form',
     'ko',
     'jquery',
+    'Magento_Checkout/js/model/quote'
 
-], function (Component,ko,$) {
+], function (Component,ko,$, quote) {
     'use strict';
 
     return Component.extend({
+        initObservable: function () {
+            const self = this._super();
+            this.showNovaposhta = ko.computed(function () {
+                let method = quote.shippingMethod();
+                if(method !== undefined && method !== null){
+                    if(method['carrier_code'] === 'novaposhta'){
+                        return true;
+                    }
+                }
+                return false;
+            }, this);
+
+            return this;
+        },
 
         initialize: function () {
             this._super();

@@ -1,10 +1,8 @@
 <!-- ko if:enable  -->
-<div id="shipping-delivery-form" class="shipping-delivery" >
+<div id="shipping-delivery-form" class="shipping-delivery" data-bind="visible: showNovaposhta()" >
     <div class="step-title"
-         translate="'Delivery'"
+         translate="'Nova Poshta'"
          data-role="title"></div>
-
-    <legend data-bind="i18n: 'Nova Poshta: '"></legend>
     <ul class="list-novaposhta">
         <li>
             <div class="delivery-type">
