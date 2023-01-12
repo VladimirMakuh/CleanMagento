@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="quote" resource="default" engine="innodb" comment="">
-        <column xsi:type="longtext" name="delivery_novaposhta" nullable="false"/>
+    <table name="quote" resource="default" engine="innodb" >
+        <column xsi:type="varchar" name="delivery_novaposhta" nullable="true" comment="Delivery Novaposhta information"/>
+    </table>
+    <table name="sales_order" resource="default" engine="innodb" >
+        <column xsi:type="varchar" name="delivery_novaposhta" nullable="true" comment="Delivery Novaposhta information"/>
     </table>
 </schema>

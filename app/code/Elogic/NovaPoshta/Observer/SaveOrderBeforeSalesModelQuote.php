@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Elogic\Internship\Observer;
+namespace Elogic\NovaPoshta\Observer;
 
 use Magento\Framework\DataObject\Copy;
 use Magento\Framework\Event\Observer;

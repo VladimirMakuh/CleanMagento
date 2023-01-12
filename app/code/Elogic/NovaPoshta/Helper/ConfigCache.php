@@ -2,11 +2,10 @@
 
 namespace Elogic\NovaPoshta\Helper;
 
-use Magento\Framework\App\PageCache\Version;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\App\Cache\Frontend\Pool;
 
-class DataCache
+class ConfigCache
 {
     /**
      * @var TypeListInterface
@@ -30,10 +29,9 @@ class DataCache
     }
 
     /**
-     * @param Version $subject
      * @return void
      */
-    public function flushCache(Version $subject)
+    public function flushCache(): void
     {
         $_types = [
             'config',

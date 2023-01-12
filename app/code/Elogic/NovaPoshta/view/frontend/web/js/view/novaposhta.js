@@ -2,14 +2,15 @@ define([
     'Magento_Ui/js/form/form',
     'ko',
     'jquery',
-    'Magento_Checkout/js/model/quote'
-
-], function (Component,ko,$, quote) {
+    'Magento_Checkout/js/model/quote',
+    'Magento_Tax/js/view/checkout/shipping_method/price',
+    'mage/url',
+    'Magento_Checkout/js/model/shipping-rate-registry'
+], function (Component, ko, $, quote, price,url, rateRegistry) {
     'use strict';
 
     return Component.extend({
         initObservable: function () {
-            const self = this._super();
             this.showNovaposhta = ko.computed(function () {
                 let method = quote.shippingMethod();
                 if(method !== undefined && method !== null){
@@ -28,12 +29,22 @@ define([
             // Variable
             this.data = ko.observableArray();
             this.dataDepartment = ko.observableArray();
+            this.dataPostBox = ko.observableArray();
             this.dataStreet = ko.observableArray();
+
+            //novaposhta store settings
             this.enable = ko.observable();
             this.apiKey = ko.observable();
-            this.selectedCity = ko.observable();
+            this.enableCustomPrice = ko.observable();
+            this.priceDepartment = ko.observable();
+            this.pricePostBox = ko.observable();
+            this.priceCourier = ko.observable();
 
-            this.deliveryType = ko.observable('Department');
+
+            this.selectedCity = ko.observable();
+            this.selectedTypeDelivery = 0;
+
+            this.deliveryType = ko.observable("department");
 
             //Visible variable
             this.getCities();
@@ -49,18 +60,26 @@ define([
             const data = window.checkoutConfig.novaposhta;
             this.enable = data.enable;
             this.apiKey = data.api_key;
+            if (data.enableCustomPrice)
+            {
+                this.priceDepartment = data.departmentPrice;
+                this.pricePostBox = data.postBoxPrice;
+                this.priceCourier = data.courierPrice;
+            }
         },
         /**
-         * Make request
+         *
+         * Make request to NovaPoshta Api
          * @param model
          * @param method
          * @param properties
          * @constructor
          */
         MakeRequest: function(model,method, properties = null) {
+            const self = this;
+
             const errorMessage = $("#delivery-error-message-department");
             const errorMessagePostBox = $("#delivery-error-message-postbox");
-            const self = this;
             $.ajax({
                 url: 'https://api.novaposhta.ua/v2.0/json/',
                 dataType: 'json',
@@ -78,20 +97,42 @@ define([
                     case "getCities" :
                         self.data(data.data);
                         break;
+
                     case "getWarehouses" :
-                        if(data.data.length !== 0)
+                        self.dataDepartment.removeAll();
+                        self.dataPostBox.removeAll();
+
+                        if(data.data.length ===0)
                         {
-                            errorMessage.hide();
-                            if(!data.data.PostMachineType){
-                                errorMessagePostBox.hide();
-                            }
-                            self.dataDepartment(data.data);
+                            errorMessagePostBox.show();
+                            errorMessage.show();
                             break;
                         }
-                        errorMessagePostBox.show();
-                        errorMessage.show();
-                        self.dataDepartment(null);
+                        //
+                        for (const department in data.data) {
+                            if(data.data[department].CategoryOfWarehouse === "Postomat") {
+                                self.dataPostBox.push(data.data[department]);
+                            }
+                            else {
+                                self.dataDepartment.push(data.data[department]);
+                            }
+                        }
+                        // Show error message
+                        if(self.dataDepartment().length > 0)
+                        {
+                            errorMessage.hide();
+                            if(self.dataPostBox().length > 0) {
+                                errorMessagePostBox.hide();
+                            }
+                            else{
+                                errorMessagePostBox.show();
+                            }
+                        }
+                        else{
+                            errorMessage.show();
+                        }
                         break;
+
                     case "getStreet" :
                         if(data.data.length !== 0)
                         {
@@ -118,32 +159,40 @@ define([
             let property = {'CityRef': this.selectedCity};
             return this.MakeRequest('Address', 'getStreet', property);
         },
-        selectPostBox: function (){
-            deliveryType('Post Box');
-            if(!$("#post-box").prop('checked'))
-            {
-                document.getElementById('post-box').checked = true;
+        selectTypeDelivery: function (obj, event){
+            switch (event.target.value) {
+                case 'postbox' :
+                    $("#postbox").prop('checked', true);
+                    $(".delivery-novaposhta-department").hide();
+                    $("#list-courier").hide();
+                    $(".delivery-novaposhta-postbox").show();
+                    this.setNovaPoshtaPrice(this.priceDepartment);
+                    break;
+                case 'courier' :
+                    $("#courier").prop('checked', true);
+                    $(".delivery-novaposhta-postbox").hide();
+                    $(".delivery-novaposhta-department").hide();
+                    $("#list-courier").show();
+                    this.setNovaPoshtaPrice(this.priceCourier);
+                    break;
+                case 'department' :
+                    $("#department").prop('checked', true);
+                    $(".delivery-novaposhta-postbox").hide();
+                    $("#list-courier").hide();
+                    $(".delivery-novaposhta-department").show();
+                    this.setNovaPoshtaPrice(this.priceDepartment);
+                    break;
             }
-            $(".delivery-novaposhta-department").hide();
-            $("#list-courier").hide();
-            $(".delivery-novaposhta-postbox").show();
-            console.log("postbox");
-            console.log(deliveryType._latestValue);
         },
-        selectDepartment: function (event) {
-            deliveryType('Department');
-            $(".delivery-novaposhta-postbox").hide();
-            $("#list-courier").hide();
-            $(".delivery-novaposhta-department").show();
-            console.log("department");
-        },
-        selectCourier: function () {
-            deliveryType('Courier');
-            $("#courier").prop('checked', true);
-            $(".delivery-novaposhta-postbox").hide();
-            $(".delivery-novaposhta-department").hide();
-            $("#list-courier").show();
-            console.log("courier");
+
+        /**
+         * Set new text price on storefront novaposhta
+         * @param price
+         */
+        setNovaPoshtaPrice: function (price) {
+            jQuery("#label_carrier_novaposhta_novaposhta").closest("tr.row")
+                .find("span.price > span.price")
+                .text("$" + price.toFixed(2).toString())
         },
         /**
          * Form submit handler
@@ -153,16 +202,15 @@ define([
         onSubmit: function () {
             // trigger form validation
             this.source.set('params.invalid', false);
-            this.source.trigger('shippingDelivery.data.validate');
+            this.source.trigger('ShippingDeliveryProvider.data.validate');
 
             // verify that form data is valid
             if (!this.source.get('params.invalid')) {
                 // data is retrieved from data provider by value of the customScope property
-                const formData = this.source.get('shippingDelivery');
+                const formData = this.source.get('ShippingDeliveryProvider');
                 // do something with form data
                 console.dir(formData);
             }
         }
     });
-
 });

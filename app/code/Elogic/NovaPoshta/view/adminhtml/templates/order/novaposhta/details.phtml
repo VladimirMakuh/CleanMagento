@@ -19,7 +19,7 @@
                     <tr>
                         <th><?= $block->escapeHtml(__('Type Delivery')) ?></th>
                         <td>
-                            <?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryType) ?>
+                            <?= $block->escapeHtml($block->showType($novaPoshtaDeliveryInfo->DeliveryType)) ?>
                         </td>
                     </tr>
                     <tr>
@@ -28,18 +28,19 @@
                             <?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->City) ?>
                         </td>
                     </tr>
-                    <?php if ($novaPoshtaDeliveryInfo->DeliveryType === "Courier") : ?>
+                    <?php if ($novaPoshtaDeliveryInfo->DeliveryType === "courier") : ?>
                         <tr>
                             <th><?= $block->escapeHtml(__('Street')) ?></th>
-                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Street) ?></td>
-
-                            <th><?= $block->escapeHtml(__('House')) ?></th>
-                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->House) ?></td>
-
-                            <th><?= $block->escapeHtml(__('Flat')) ?></th>
-                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Flat) ?></td>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Courier->Street) ?></td>
                         </tr>
-
+                        <tr>
+                            <th><?= $block->escapeHtml(__('House')) ?></th>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Courier->House) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Flat')) ?></th>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Courier->Flat) ?></td>
+                        </tr>
                     <?php elseif ($novaPoshtaDeliveryInfo->DeliveryType === "department"): ?>
                         <tr>
                             <th><?= $block->escapeHtml(__('Department')) ?></th>
