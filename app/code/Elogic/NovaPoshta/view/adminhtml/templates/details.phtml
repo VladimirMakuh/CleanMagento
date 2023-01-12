@@ -1,0 +1,61 @@
+<?php $order = $block->getOrder(); ?>
+<?php if ($order->getDeliveryNovaposhta()) : ?>
+<section class="admin__page-section order-additional-information">
+    <div class="admin__page-section-title">
+        <strong class="title"><?php echo /* @escapeNotVerified */ __(' Shipping Nova Poshta'); ?></strong>
+    </div>
+    <div id="<?php echo $block->getHtmlId() ?>"
+         class="admin__page-section-content order-additional-information-container">
+        <div class="admin__page-section-item order-information">
+            <div class="admin__page-section-item-title">
+                <span class="title">Shipping Information</span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <?php try {
+                    $novaPoshtaDeliveryInfo = json_decode($order->getDeliveryNovaposhta(), false, 512, JSON_THROW_ON_ERROR);
+                } catch (JsonException $e) {
+                } ?>
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Type Delivery')) ?></th>
+                        <td>
+                            <?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryType) ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('City')) ?></th>
+                        <td>
+                            <?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->City) ?>
+                        </td>
+                    </tr>
+                    <?php if ($novaPoshtaDeliveryInfo->DeliveryType === "Courier") : ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Street')) ?></th>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Street) ?></td>
+
+                            <th><?= $block->escapeHtml(__('House')) ?></th>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->House) ?></td>
+
+                            <th><?= $block->escapeHtml(__('Flat')) ?></th>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Flat) ?></td>
+                        </tr>
+
+                    <?php elseif ($novaPoshtaDeliveryInfo->DeliveryType === "department"): ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Department')) ?></th>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->Department) ?></td>
+                        </tr>
+
+                    <?php elseif ($novaPoshtaDeliveryInfo->DeliveryType === "postbox"): ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Parcel locker')) ?></th>
+                            <td><?= $block->escapeHtml($novaPoshtaDeliveryInfo->DeliveryCheckpoint->PostBox) ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?= $block->getChildHtml('extra_customer_info') ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>

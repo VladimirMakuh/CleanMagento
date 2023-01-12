@@ -33,7 +33,7 @@ define([
             this.apiKey = ko.observable();
             this.selectedCity = ko.observable();
 
-            this.isDepartment = ko.observable();
+            this.deliveryType = ko.observable('Department');
 
             //Visible variable
             this.getCities();
@@ -119,6 +119,7 @@ define([
             return this.MakeRequest('Address', 'getStreet', property);
         },
         selectPostBox: function (){
+            deliveryType('Post Box');
             if(!$("#post-box").prop('checked'))
             {
                 document.getElementById('post-box').checked = true;
@@ -127,14 +128,17 @@ define([
             $("#list-courier").hide();
             $(".delivery-novaposhta-postbox").show();
             console.log("postbox");
+            console.log(deliveryType._latestValue);
         },
         selectDepartment: function (event) {
+            deliveryType('Department');
             $(".delivery-novaposhta-postbox").hide();
             $("#list-courier").hide();
             $(".delivery-novaposhta-department").show();
             console.log("department");
         },
         selectCourier: function () {
+            deliveryType('Courier');
             $("#courier").prop('checked', true);
             $(".delivery-novaposhta-postbox").hide();
             $(".delivery-novaposhta-department").hide();
