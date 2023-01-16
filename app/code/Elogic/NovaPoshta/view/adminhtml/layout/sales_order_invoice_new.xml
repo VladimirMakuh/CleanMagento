@@ -1,18 +1,28 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-<!--        <referenceContainer name="order_additional_info">-->
-<!--            <block class="Elogic\NovaPoshta\Block\Adminhtml\NovaPoshtaDetails"-->
-<!--                   name="novaposhta.order.invoice.details"-->
-<!--                   template="Elogic_NovaPoshta::details.phtml" group="column"/>-->
-<!--        </referenceContainer>-->
-
-<!--        <referenceBlock name="order_items" class="Elogic\NovaPoshta\Block\Adminhtml\NovaPoshtaDetails" template="Elogic_NovaPoshta::form.phtml"/>-->
-
-        <referenceBlock name="order_items.default" class="Elogic\NovaPoshta\Block\Adminhtml\NovaPoshtaDetails">
-            <action method="setTemplate">
-                <argument name="template" xsi:type="string">Elogic_NovaPoshta::form.phtml</argument>
-            </action>
-        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Sales\Block\Adminhtml\Order\Invoice\Create" name="sales_invoice_create">
+                <block class="Magento\Sales\Block\Adminhtml\Order\Invoice\Create\Form" name="form" template="Elogic_NovaPoshta::order/invoice/create/form.phtml">
+                    <block class="Magento\Sales\Block\Adminhtml\Order\View\Info" name="order_info" template="Magento_Sales::order/view/info.phtml">
+                        <container name="extra_customer_info"/>
+                    </block>
+                    <block class="Magento\Sales\Block\Adminhtml\Order\Payment" name="order_payment"/>
+                    <!-- Nova Poshta component-->
+                    <block class="Elogic\NovaPoshta\Block\Adminhtml\NovaPoshtaDetails" name="order.items.nova.poshta" template="Elogic_NovaPoshta::order/novaposhta/details.phtml"/>
+                    <block class="Magento\Sales\Block\Adminhtml\Order\Invoice\Create\Items" name="order_items" template="Magento_Sales::order/invoice/create/items.phtml">
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Renderer\DefaultRenderer" name="order_items.default" as="default" template="Magento_Sales::order/invoice/create/items/renderer/default.phtml"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_qty" template="Magento_Sales::items/column/qty.phtml" group="column"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name" template="Magento_Sales::items/column/name.phtml" group="column"/>
+                        <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Order\Invoice\Totals" name="invoice_totals" template="Magento_Sales::order/totals.phtml">
+                            <block class="Magento\Sales\Block\Adminhtml\Order\Totals\Tax" name="tax" template="Magento_Sales::order/totals/tax.phtml"/>
+                        </block>
+                        <container name="submit_before" label="Submit Before"/>
+                        <container name="submit_after" label="Submit After"/>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
     </body>
 </page>

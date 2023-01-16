@@ -8,6 +8,7 @@ use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
+use Magento\Shipping\Model\Rate\Result;
 use Magento\Shipping\Model\Rate\ResultFactory;
 use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Psr\Log\LoggerInterface;
@@ -49,7 +50,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
 
     /**
      * @param RateRequest $request
-     * @return bool|\Magento\Framework\DataObject|\Magento\Shipping\Model\Rate\Result|null
+     * @return bool|Result|null
      */
     public function collectRates(RateRequest $request)
     {

@@ -66,6 +66,12 @@ define([
                 this.pricePostBox = data.postBoxPrice;
                 this.priceCourier = data.courierPrice;
             }
+            else
+            {
+                this.priceDepartment = 50;
+                this.pricePostBox = 50;
+                this.priceCourier = 85;
+            }
         },
         /**
          *
@@ -146,7 +152,7 @@ define([
         getCities:function (){
             return  this.MakeRequest('Address','getCities');
         },
-        getDepartment: function (obj, event){
+        getDepartments: function (obj, event){
             this.selectedCity = event.target.value;
             this.getWarehouses();
             this.getStreet();
@@ -156,6 +162,7 @@ define([
             return this.MakeRequest('Address', 'getWarehouses', property);
         },
         getStreet: function () {
+
             let property = {'CityRef': this.selectedCity};
             return this.MakeRequest('Address', 'getStreet', property);
         },
@@ -192,7 +199,7 @@ define([
         setNovaPoshtaPrice: function (price) {
             jQuery("#label_carrier_novaposhta_novaposhta").closest("tr.row")
                 .find("span.price > span.price")
-                .text("$" + price.toFixed(2).toString())
+                .text("$" + parseInt(price).toFixed(2).toString())
         },
         /**
          * Form submit handler

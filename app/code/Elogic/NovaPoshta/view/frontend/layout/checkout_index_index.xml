@@ -19,10 +19,10 @@
                                                             <item name="children" xsi:type="array">
                                                                 <item name="delivery-novaposhta" xsi:type="array">
                                                                       <!-- Add this item to configure your js file  -->
-                                                                    <item name="component" xsi:type="string">Elogic_NovaPoshta/js/view/checkout-delivery-novaposhta</item>
-                                                                    <item name="provider" xsi:type="string">checkoutDeliveryProvider</item>
+                                                                    <item name="component" xsi:type="string">Elogic_NovaPoshta/js/view/novaposhta</item>
+                                                                    <item name="provider" xsi:type="string">ShippingDeliveryProvider</item>
                                                                     <item name="config" xsi:type="array">
-                                                                        <item name="template" xsi:type="string">Elogic_NovaPoshta/checkout-delivery-novaposhta</item>
+                                                                        <item name="template" xsi:type="string">Elogic_NovaPoshta/novaposhta</item>
                                                                     </item>
                                                                     <item name="sortOrder" xsi:type="string">0</item>
                                                                 </item>

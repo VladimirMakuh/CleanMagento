@@ -23,7 +23,13 @@ class NovaPoshtaConfigProvider implements ConfigProviderInterface
     {
        return [
            'novaposhta'=>
-           [ "enable" => $this->configProvider->IsModuleEnabled(), "api_key" =>$this->configProvider->getNovaPoshtaApiKey()]
+           [ "enable" => $this->configProvider->IsModuleEnabled(),
+               "api_key" =>$this->configProvider->getNovaPoshtaApiKey(),
+               "enableCustomPrice" => $this->configProvider->isEnableCustomPrice(),
+               "departmentPrice" => $this->configProvider->getDepartmentPrice(),
+               "postBoxPrice" => $this->configProvider->getPostBoxPrice(),
+               "courierPrice" => $this->configProvider->getCourierPrice()
+           ]
        ];
     }
 }

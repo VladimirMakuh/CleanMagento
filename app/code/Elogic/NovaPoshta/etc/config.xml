@@ -8,11 +8,21 @@
                 <sallowspecific>0</sallowspecific>
                 <model>Elogic\NovaPoshta\Model\Carrier\Shipping</model>
                 <name>Nova Poshta</name>
-                <price>50.00</price>
+                <price>60.00</price>
                 <title>Nova Poshta</title>
                 <specificerrmsg>This shipping method is now available. To use this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
             </novaposhta>
         </carriers>
+
+        <novaposhta>
+            <novaposhta>
+                <enable>1</enable>
+                <enable_custom_price>1</enable_custom_price>
+                <novaposhta_delivery_department_cost>60</novaposhta_delivery_department_cost>
+                <novaposhta_delivery_postbox_cost>60</novaposhta_delivery_postbox_cost>
+                <novaposhta_delivery_courier_cost>90</novaposhta_delivery_courier_cost>
+            </novaposhta>
+        </novaposhta>
     </default>
 </config>

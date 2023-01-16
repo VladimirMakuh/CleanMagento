@@ -10,6 +10,10 @@ class ConfigProvider
 {
     public const XML_PATH_ENABLE = 'novaposhta/novaposhta/enable';
     public const XML_PATH_NOVAPOSHTA_API_KEY = 'novaposhta/novaposhta/novaposhta_api_key';
+    public const XML_PATH_NOVAPOSHTA_ENABLE_CUSTOM_PRICE= 'novaposhta/novaposhta/enable_custom_price';
+    public const XML_PATH_NOVAPOSHTA_DEPARTMENT_PRICE= 'novaposhta/novaposhta/novaposhta_delivery_department_cost';
+    public const XML_PATH_NOVAPOSHTA_POSTBOX_PRICE= 'novaposhta/novaposhta/novaposhta_delivery_postbox_cost';
+    public const XML_PATH_NOVAPOSHTA_COURIER_PRICE= 'novaposhta/novaposhta/novaposhta_delivery_courier_cost';
 
     private ScopeConfigInterface $scopeConfig;
 
@@ -41,6 +45,44 @@ class ConfigProvider
     {
         return (string)$this->scopeConfig->getValue(
             self::XML_PATH_NOVAPOSHTA_API_KEY,
+            ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnableCustomPrice(): bool
+    {
+        return (bool)$this->scopeConfig->getValue(
+            self::XML_PATH_NOVAPOSHTA_ENABLE_CUSTOM_PRICE,
+            ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartmentPrice(): string
+    {
+        return (string)$this->scopeConfig->getValue(
+            self::XML_PATH_NOVAPOSHTA_DEPARTMENT_PRICE,
+            ScopeInterface::SCOPE_STORE);
+    }
+    /**
+     * @return string
+     */
+    public function getPostBoxPrice(): string
+    {
+        return (string)$this->scopeConfig->getValue(
+            self::XML_PATH_NOVAPOSHTA_POSTBOX_PRICE,
+            ScopeInterface::SCOPE_STORE);
+    }
+    /**
+     * @return string
+     */
+    public function getCourierPrice(): string
+    {
+        return (string)$this->scopeConfig->getValue(
+            self::XML_PATH_NOVAPOSHTA_COURIER_PRICE,
             ScopeInterface::SCOPE_STORE);
     }
 }

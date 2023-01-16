@@ -2,11 +2,14 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
+        <tab id="elogic" translate="label" sortOrder="10">
+            <label>Elogic Internship</label>
+        </tab>
         <section id="novaposhta" sortOrder="20" translate="label" showInDefault="1" showInStore="1" showInWebsite="1">
             <class>separator-top</class>
             <label>Nova Poshta</label>
             <tab>elogic</tab>
-            <resource>Elogic_Internship::configuration</resource>
+            <resource>Elogic_NovaPoshta::configuration</resource>
             <group id="novaposhta" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
                    showInStore="1">
                 <label>Configuration</label>
@@ -17,7 +20,33 @@
                 </field>
                 <field id="novaposhta_api_key" translate="label" type="text" sortOrder="20" showInDefault="1"
                        showInWebsite="1">
-                    <label>Nova Poshta Api Key</label>
+                    <label>Api Key</label>
+                </field>
+                <field id="enable_custom_price" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Use custom price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="novaposhta_delivery_department_cost" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Delivery department price</label>
+                    <depends>
+                        <field id="enable_custom_price">1</field>
+                    </depends>
+                </field>
+                <field id="novaposhta_delivery_postbox_cost" translate="label" type="text" sortOrder="50" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Delivery parcel locker price</label>
+                    <depends>
+                        <field id="enable_custom_price">1</field>
+                    </depends>
+                </field>
+                <field id="novaposhta_delivery_courier_cost" translate="label" type="text" sortOrder="60" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Delivery courier price</label>
+                    <depends>
+                        <field id="enable_custom_price">1</field>
+                    </depends>
                 </field>
             </group>
         </section>
