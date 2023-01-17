@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elogic_Certificate::certificate"
+             title="Elogic Certificate"
+             translate="title"
+             module="Elogic_Certificate"
+             sortOrder="10"
+             resource="Elogic_Certificate::subject"/>
+        <add id="Elogic_Certificate::subject"
+             title="Subject"
+             translate="title"
+             module="Elogic_Certificate"
+             resource="Elogic_Certificate::subject"
+             sortOrder="30"
+             action="elogic/subject/index"
+            parent="Elogic_Certificate::certificate"/>
+    </menu>
+</config>

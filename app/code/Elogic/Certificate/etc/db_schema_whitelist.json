@@ -1,0 +1,14 @@
+{
+  "elogic_subject": {
+    "column": {
+      "subject_id": true,
+      "subject": true
+    },
+    "index": {
+      "ELOGIC_SUBJECT_SUBJECT_ID": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  }
+}

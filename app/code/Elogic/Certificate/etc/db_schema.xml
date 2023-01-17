@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="elogic_subject" resource="default" engine="innodb" comment="Subject">
+        <column xsi:type="int" name="subject_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Subject Id Column"/>
+        <column xsi:type="varchar" name="subject" nullable="false" length="255" comment="Name Column"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="subject_id"/>
+        </constraint>
+        <index referenceId="ELOGIC_SUBJECT_SUBJECT_ID" indexType="btree">
+            <column name="subject_id"/>
+        </index>
+    </table>
+</schema>

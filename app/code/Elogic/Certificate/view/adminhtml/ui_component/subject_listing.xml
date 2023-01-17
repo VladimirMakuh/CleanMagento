@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">subject_listing.subject_listing_data_source</item>
+            <item name="deps" xsi:type="string">subject_listing.subject_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New</label>
+            </button>
+        </buttons>
+        <spinner>subject_listing_columns</spinner>
+        <deps>
+            <dep>subject_listing.subject_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="subject_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">subject_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Elogic_Certificate::subject</aclResource>
+        <dataProvider class="Elogic\Certificate\Ui\DataProvider\SubjectDataProvider" name="subject_listing_data_source">
+            <settings>
+                <requestFieldName>subject_id</requestFieldName>
+                <primaryFieldName>subject_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="subject"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="subject_listing_columns">
+        <column name="subject_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="subject">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">subject</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Elogic\Certificate\Ui\Component\Listing\Column\SubjectBlockActions">
+            <settings>
+                <indexField>subject_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
