@@ -15,6 +15,7 @@
                     <resource id="Elogic_Certificate::read" title="Read" translate="true" sortOrder="30"/>
                     <resource id="Elogic_Certificate::write" title="Write" translate="true" sortOrder="40"/>
                     <resource id="Elogic_Certificate::subject" title="Subject" translate="true" sortOrder="50"/>
+                    <resource id="Elogic_Certificate::type" title="Subject" translate="true" sortOrder="50"/>
                 </resource>
             </resource>
         </resources>

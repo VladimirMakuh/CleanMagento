@@ -1,14 +1,26 @@
 {
-  "elogic_subject": {
-    "column": {
-      "subject_id": true,
-      "subject": true
+    "elogic_subject": {
+        "column": {
+            "subject_id": true,
+            "subject": true
+        },
+        "index": {
+            "ELOGIC_SUBJECT_SUBJECT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
     },
-    "index": {
-      "ELOGIC_SUBJECT_SUBJECT_ID": true
-    },
-    "constraint": {
-      "PRIMARY": true
+    "elogic_type": {
+        "column": {
+            "type_id": true,
+            "type": true
+        },
+        "index": {
+            "ELOGIC_TYPE_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
     }
-  }
 }

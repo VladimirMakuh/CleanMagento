@@ -15,22 +15,22 @@ class SubjectRepository implements SubjectRepositoryInterface
     /**
      * @var SubjectInterfaceFactory
      */
-    private SubjectInterfaceFactory $storeFactory;
+    private SubjectInterfaceFactory $subjectFactory;
     /**
      * @var Resource
      */
-    private Resource $storeResource;
+    private Resource $subjectResource;
 
     /**
-     * @param SubjectInterfaceFactory $storeFactory
-     * @param Resource $storeResource
+     * @param SubjectInterfaceFactory $subjectFactory
+     * @param Resource $subjectResource
      */
     public function __construct(
-        SubjectInterfaceFactory                  $storeFactory,
-        Resource                                 $storeResource
+        SubjectInterfaceFactory                  $subjectFactory,
+        Resource                                 $subjectResource
     ){
-        $this->storeFactory = $storeFactory;
-        $this->storeResource = $storeResource;
+        $this->subjectFactory = $subjectFactory;
+        $this->subjectResource = $subjectResource;
     }
 
     /**
@@ -40,7 +40,7 @@ class SubjectRepository implements SubjectRepositoryInterface
      */
     public function save(SubjectInterface $subject): SubjectInterface
     {
-        $this->storeResource->save($subject);
+        $this->subjectResource->save($subject);
         return $subject;
     }
 
@@ -61,8 +61,8 @@ class SubjectRepository implements SubjectRepositoryInterface
      */
     public function getById(int $subject_id): SubjectInterface
     {
-        $subject = $this->storeFactory->create();
-        $this->storeResource->load($subject, $subject_id);
+        $subject = $this->subjectFactory->create();
+        $this->subjectResource->load($subject, $subject_id);
         return $subject;
     }
 
@@ -73,6 +73,6 @@ class SubjectRepository implements SubjectRepositoryInterface
      */
     public function delete(SubjectInterface $subject): void
     {
-        $this->storeResource->delete($subject);
+        $this->subjectResource->delete($subject);
     }
 }

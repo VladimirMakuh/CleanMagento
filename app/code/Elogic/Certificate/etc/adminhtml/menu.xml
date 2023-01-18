@@ -16,5 +16,13 @@
              sortOrder="30"
              action="elogic/subject/index"
             parent="Elogic_Certificate::certificate"/>
+        <add id="Elogic_Certificate::type"
+             title="Type"
+             translate="title"
+             module="Elogic_Certificate"
+             resource="Elogic_Certificate::subject"
+             sortOrder="40"
+             action="elogic/type/index"
+             parent="Elogic_Certificate::certificate"/>
     </menu>
 </config>

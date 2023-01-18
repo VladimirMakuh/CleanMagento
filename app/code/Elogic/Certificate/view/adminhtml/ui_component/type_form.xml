@@ -3,16 +3,16 @@
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">subject_form.subject_form_data_source</item>
+            <item name="provider" xsi:type="string">type_form.type_form_data_source</item>
         </item>
-        <item name="label" xsi:type="string" translate="true">Subject Form</item>
+        <item name="label" xsi:type="string" translate="true">Type Form</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
-        <namespace>subject_form</namespace>
+        <namespace>type_form</namespace>
         <dataScope>data.general</dataScope>
         <deps>
-            <dep>subject_form.subject_form_data_source</dep>
+            <dep>type_form.type_form_data_source</dep>
         </deps>
         <buttons>
             <button name="save" class="Elogic\Certificate\Ui\Component\Form\Button\Save"/>
@@ -28,14 +28,14 @@
             </button>
         </buttons>
     </settings>
-    <dataSource name="subject_form_data_source" component="Magento_Ui/js/form/provider">
+    <dataSource name="type_form_data_source" component="Magento_Ui/js/form/provider">
         <settings>
-            <submitUrl path="elogic/subject/save"/>
+            <submitUrl path="elogic/type/save"/>
         </settings>
-        <dataProvider class="Elogic\Certificate\Ui\DataProvider\SubjectDataProvider" name="subject_form_data_source">
+        <dataProvider class="Elogic\Certificate\Ui\DataProvider\TypeDataProvider" name="type_form_data_source">
             <settings>
-                <requestFieldName>subject_id</requestFieldName>
-                <primaryFieldName>subject_id</primaryFieldName>
+                <requestFieldName>type_id</requestFieldName>
+                <primaryFieldName>type_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -43,28 +43,28 @@
         <settings>
             <label translate="true">General</label>
         </settings>
-        <field name="subject_id" sortOrder="0" formElement="hidden">
+        <field name="type_id" sortOrder="0" formElement="hidden">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">subject_id</item>
+                    <item name="source" xsi:type="string">type_id</item>
                 </item>
             </argument>
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Entity ID</label>
-                <dataScope>subject_id</dataScope>
+                <dataScope>type_id</dataScope>
             </settings>
         </field>
-        <field name="subject" sortOrder="00" formElement="input">
+        <field name="type" sortOrder="00" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">Subject</item>
+                    <item name="source" xsi:type="string">Type</item>
                 </item>
             </argument>
             <settings>
                 <dataType>string</dataType>
-                <label translate="true">Subject</label>
-                <dataScope>subject</dataScope>
+                <label translate="true">Type</label>
+                <dataScope>type</dataScope>
             </settings>
         </field>
     </fieldset>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Elogic\Certificate\Ui\Component\Subject\Form\Button;
+namespace Elogic\Certificate\Ui\Component\Form\Button;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 

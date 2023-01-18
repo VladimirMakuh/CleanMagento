@@ -4,12 +4,23 @@
     <table name="elogic_subject" resource="default" engine="innodb" comment="Subject">
         <column xsi:type="int" name="subject_id" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Subject Id Column"/>
-        <column xsi:type="varchar" name="subject" nullable="false" length="255" comment="Name Column"/>
+        <column xsi:type="varchar" name="subject" nullable="false" length="255" comment="Subject name column"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="subject_id"/>
         </constraint>
         <index referenceId="ELOGIC_SUBJECT_SUBJECT_ID" indexType="btree">
             <column name="subject_id"/>
+        </index>
+    </table>
+    <table name="elogic_type" resource="default" engine="innodb" comment="Type">
+        <column xsi:type="int" name="type_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Type Id Column"/>
+        <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Type name column"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="type_id"/>
+        </constraint>
+        <index referenceId="ELOGIC_TYPE_TYPE_ID" indexType="btree">
+            <column name="type_id"/>
         </index>
     </table>
 </schema>
