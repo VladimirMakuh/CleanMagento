@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">certificate_form.certificate_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Certificate Form</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <namespace>certificate_form</namespace>
+        <dataScope>data.general</dataScope>
+        <deps>
+            <dep>certificate_form.certificate_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="save" class="Elogic\Certificate\Ui\Component\Form\Button\Save"/>
+            <button name="back">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="reset">
+                <class>reset</class>
+                <label translate="true">Reset</label>
+                <url path="*/*/edit"/>
+            </button>
+        </buttons>
+    </settings>
+    <dataSource name="certificate_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="elogic/certificate/save"/>
+        </settings>
+        <dataProvider class="Elogic\Certificate\Ui\DataProvider\CertificateDataProvider" name="certificate_form_data_source">
+            <settings>
+                <requestFieldName>certificate_id</requestFieldName>
+                <primaryFieldName>certificate_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="certificate_id" sortOrder="0"  formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">certificate_id</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Certificate ID</label>
+                <dataScope>certificate_id</dataScope>
+            </settings>
+        </field>
+        <field name="type_id" sortOrder="10" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">type_id</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <label translate="true">Type</label>
+                <dataScope>type_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elogic\Certificate\Model\Type\Source\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="subject_id" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">subject_id</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <label translate="true">Subject</label>
+                <dataScope>subject_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elogic\Certificate\Model\Subject\Source\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="student_name" sortOrder="30" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">student_name</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <label translate="true">Student name</label>
+                <dataScope>student_name</dataScope>
+            </settings>
+        </field>
+        <field name="student_surname" sortOrder="40" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">student_surname</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <label translate="true">Student surname</label>
+                <dataScope>student_surname</dataScope>
+            </settings>
+        </field>
+        <field name="date_valid" sortOrder="50" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">date_valid</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <label translate="true">Valid until</label>
+                <dataScope>date_valid</dataScope>
+            </settings>
+        </field>
+        <field name="signature" sortOrder="60" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">signature</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Signature</label>
+                <dataScope>signature</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

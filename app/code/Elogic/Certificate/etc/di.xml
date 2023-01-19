@@ -3,6 +3,10 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Elogic\Certificate\Api\Data\SubjectInterface" type="Elogic\Certificate\Model\Subject"/>
     <preference for="Elogic\Certificate\Api\SubjectRepositoryInterface" type="Elogic\Certificate\Model\SubjectRepository"/>
+
     <preference for="Elogic\Certificate\Api\Data\TypeInterface" type="Elogic\Certificate\Model\Type"/>
     <preference for="Elogic\Certificate\Api\TypeRepositoryInterface" type="Elogic\Certificate\Model\TypeRepository"/>
+
+    <preference for="Elogic\Certificate\Api\Data\CertificateInterface" type="Elogic\Certificate\Model\Certificate"/>
+    <preference for="Elogic\Certificate\Api\CertificateRepositoryInterface" type="Elogic\Certificate\Model\CertificateRepository"/>
 </config>

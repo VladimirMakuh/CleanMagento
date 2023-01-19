@@ -23,4 +23,24 @@
             <column name="type_id"/>
         </index>
     </table>
+    <table name="elogic_certificate" resource="default" engine="innodb" comment="Certificate">
+        <column xsi:type="int" name="certificate_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Certificate Id Column"/>
+        <column xsi:type="int" name="type_id" identity="false" unsigned="true" nullable="false" comment="Type Id column"/>
+        <column xsi:type="int" name="subject_id" identity="false" unsigned="true" nullable="false" comment="Subject Id column"/>
+        <column xsi:type="varchar" name="student_name" nullable="false" length="255" comment="Student name column"/>
+        <column xsi:type="varchar" name="student_surname" nullable="false" length="255" comment="Student surname column"/>
+        <column xsi:type="date" name="date_valid" nullable="false" comment="Date column"/>
+        <column xsi:type="varchar" name="signature" length="255" comment="Signature column"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="certificate_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ELOGIC_CERTIFICATE_TYPE_ID_ELOGIC_TYPE_TYPE_ID" table="elogic_certificate" referenceTable="elogic_type" referenceColumn="type_id" column="type_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ELOGIC_CERTIFICATE_SUBJECT_ID_ELOGIC_SUBJECT_SUBJECT_ID" table="elogic_certificate" referenceTable="elogic_subject" referenceColumn="subject_id" column="subject_id" onDelete="CASCADE"/>
+
+        <index referenceId="ELOGIC_TYPE_TYPE_ID" indexType="btree">
+            <column name="certificate_id"/>
+        </index>
+    </table>
 </schema>

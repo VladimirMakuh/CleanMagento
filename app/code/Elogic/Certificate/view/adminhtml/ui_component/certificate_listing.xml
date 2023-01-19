@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">certificate_listing.certificate_listing_data_source</item>
+            <item name="deps" xsi:type="string">certificate_listing.certificate_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add Certificate</label>
+            </button>
+        </buttons>
+        <spinner>certificate_listing_columns</spinner>
+        <deps>
+            <dep>certificate_listing.certificate_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="certificate_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">certificate_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Elogic_Certificate::certificates</aclResource>
+        <dataProvider class="Elogic\Certificate\Ui\DataProvider\CertificateDataProvider" name="certificate_listing_data_source">
+            <settings>
+                <requestFieldName>certificate_id</requestFieldName>
+                <primaryFieldName>certificate_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="student_name" />
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="certificate_listing_columns">
+        <column name="certificate_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Id</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="type_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Elogic\Certificate\Model\Type\Source\Options"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Type</label>
+            </settings>
+        </column>
+        <column name="subject_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Elogic\Certificate\Model\Subject\Source\Options"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Subject</label>
+            </settings>
+        </column>
+        <column name="student_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="student_sur_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Surname</label>
+            </settings>
+        </column>
+        <column name="date_valid">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Valid To</label>
+            </settings>
+        </column>
+        <column name="signature">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Signature</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Elogic\Certificate\Ui\Component\Listing\Column\CertificateBlockActions">
+            <settings>
+                <indexField>certificate_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

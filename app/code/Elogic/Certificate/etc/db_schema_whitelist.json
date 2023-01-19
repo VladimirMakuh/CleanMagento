@@ -22,5 +22,24 @@
         "constraint": {
             "PRIMARY": true
         }
+    },
+    "elogic_certificate": {
+        "column": {
+            "certificate_id": true,
+            "type_id": true,
+            "subject_id": true,
+            "student_name": true,
+            "student_surname": true,
+            "date_valid": true,
+            "signature": true
+        },
+        "index": {
+            "ELOGIC_CERTIFICATE_CERTIFICATE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ELOGIC_CERTIFICATE_TYPE_ID_ELOGIC_TYPE_TYPE_ID": true,
+            "ELOGIC_CERTIFICATE_SUBJECT_ID_ELOGIC_SUBJECT_SUBJECT_ID": true
+        }
     }
 }
