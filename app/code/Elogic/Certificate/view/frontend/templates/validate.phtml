@@ -1,0 +1,59 @@
+<?php
+/** @var Elogic\Certificate\ViewModel\ValidateCertificate $certificate  */
+?>
+
+<div  class="cert-title">
+<!--<h1 class="titel" style="text-align: center">--><?//= __('Elogic Validate Certificate') ?><!--</h1>-->
+</div>
+<div class="validation-certificate" style="border: 2px solid;text-align: center ">
+     <div class="cert-title" style="margin-top: 20px;"> Enter certificate number:</div>
+    <div>
+        <input type="text" id="certNumber" style="width: fit-content;margin-top: 5px;">
+    </div>
+    <div>
+        <button type="submit" name="search-validate" id="btnValidate" style="margin-top: 10px;">Search</button>
+    </div>
+    <div class="message" style="margin-top: 10px;">
+    <span id="valid-message" style="display: none"></span>
+    </div>
+</div>
+
+<script>
+    require([
+        "jquery"
+    ], function($) {
+        $('#btnValidate').on('click', ()=>{
+            let certificateNumber = $('#certNumber').val();
+            $.ajax({
+                url: '<?= $block->getBaseUrl() . "certificate/certificate/validate";?>',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                {
+                    'cert_num' : certificateNumber
+                }
+            }).done(function(data)
+                {
+                    if(!$("#valid-message").show())
+                    {
+                        $("#valid-message").show();
+                    }
+                    if(!data)
+                    {
+                        $("#valid-message").css("background","#d9957d");
+                       return $("#valid-message").text(" Certificate is not exist! ");
+                    }
+
+                    if(data['available'] === true)
+                    {
+                        $("#valid-message").text(" Your certificate is valid to " + data['date_valid']);
+                        $("#valid-message").css("background","#9abf9a");
+                    }
+                    else {
+                        $("#valid-message").text(" Your certificate is not valid ");
+                        $("#valid-message").css("background","#d9957d");
+                    }
+                });
+        });
+    });
+</script>
