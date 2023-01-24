@@ -2,6 +2,7 @@
 
 namespace Elogic\Certificate\Controller\Adminhtml\Certificate;
 
+use Elogic\Certificate\Api\Data\CertificateInterface;
 use Elogic\Certificate\Api\Data\CertificateInterfaceFactory;
 use Elogic\Certificate\Api\CertificateRepositoryInterface;
 use Magento\Backend\App\Action;
@@ -52,17 +53,19 @@ class Save extends Action
         $certificate = $this->certificateFactory->create();
         $data = $this->getRequest()->getPostValue();
 
-        if (!$data['general']['certificate_id']) {
-            $data['general']['certificate_id'] = null;
+        if (!$data['general'][CertificateInterface::CERTIFICATE_ID]) {
+            $data['general'][CertificateInterface::CERTIFICATE_ID] = null;
         } else {
-            $certificate->setCertificateId($data['general']['certificate_id']);
+            $certificate->setCertificateId($data['general'][CertificateInterface::CERTIFICATE_ID]);
         }
-        $certificate->setTypeId($data['general']['type_id']);
-        $certificate->setSubjectId($data['general']['subject_id']);
-        $certificate->setStudentName($data['general']['student_name']);
-        $certificate->setStudentSurName($data['general']['student_surname']);
-        $certificate->setDateValid($data['general']['date_valid']);
-        $certificate->setSignature($data['general']['signature']);
+        $certificate->setCertificateId($data['general'][CertificateInterface::CERTIFICATE_ID]);
+        $certificate->setTypeId($data['general'][CertificateInterface::TYPE_ID]);
+        $certificate->setCertNumber($data['general'][CertificateInterface::CERT_NUMBER]);
+        $certificate->setSubjectId($data['general'][CertificateInterface::SUBJECT_ID]);
+        $certificate->setStudentName($data['general'][CertificateInterface::STUDENT_NAME]);
+        $certificate->setStudentSurname($data['general'][CertificateInterface::STUDENT_SURNAME]);
+        $certificate->setDateValid($data['general'][CertificateInterface::DATE_VALID]);
+        $certificate->setSignature($data['general'][CertificateInterface::SIGNATURE]);
 
         $this->certificateRepository->save($certificate);
 

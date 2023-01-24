@@ -29,7 +29,7 @@
              translate="title"
              module="Elogic_Certificate"
              resource="Elogic_Certificate::certificates"
-             sortOrder="40"
+             sortOrder="10"
              action="elogic/certificate/index"
              parent="Elogic_Certificate::certificate"/>
     </menu>

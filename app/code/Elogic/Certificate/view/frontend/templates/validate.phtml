@@ -13,7 +13,7 @@
     <div>
         <button type="submit" name="search-validate" id="btnValidate" style="margin-top: 10px;">Search</button>
     </div>
-    <div class="message" style="margin-top: 10px;">
+    <div class="message" style="margin: 10px 10px;">
     <span id="valid-message" style="display: none"></span>
     </div>
 </div>
@@ -24,6 +24,12 @@
     ], function($) {
         $('#btnValidate').on('click', ()=>{
             let certificateNumber = $('#certNumber').val();
+            if(!certificateNumber)
+            {
+                $("#valid-message").text(" Enter certificate number!");
+                return;
+            }
+
             $.ajax({
                 url: '<?= $block->getBaseUrl() . "certificate/certificate/validate";?>',
                 type: 'POST',

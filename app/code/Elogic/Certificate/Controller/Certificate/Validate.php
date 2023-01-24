@@ -46,6 +46,12 @@ class Validate implements HttpPostActionInterface,HttpGetActionInterface
     public function execute()
     {
         $certNumber = $this->request->getParam('cert_num');
+
+        if(!$certNumber)
+        {
+            return null;
+        }
+
         $collection = $this->collectionFactory->create();
 
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
@@ -54,7 +60,7 @@ class Validate implements HttpPostActionInterface,HttpGetActionInterface
 
         foreach ($collection as $item)
         {
-            if($item[CertificateInterface::CERTIFICATE_ID] === $certNumber)
+            if($item[CertificateInterface::CERT_NUMBER] === $certNumber)
             {
                 $data = $item;
             }

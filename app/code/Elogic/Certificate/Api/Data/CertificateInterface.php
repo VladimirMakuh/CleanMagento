@@ -10,6 +10,7 @@ interface CertificateInterface
     public const CERTIFICATE_ID      = "certificate_id";
     public const TYPE_ID             = "type_id";
     public const SUBJECT_ID          = "subject_id";
+    public const CERT_NUMBER         = "cert_number";
     public const STUDENT_NAME        = "student_name";
     public const STUDENT_SURNAME     = "student_surname";
     public const DATE_VALID          = "date_valid";
@@ -63,12 +64,26 @@ interface CertificateInterface
     public function setSubjectId(?int $subjectId): void;
 
     /**
+     * Getter for CertNumber.
+     *
+     * @return string|null
+     */
+    public function getCertNumber(): ?string;
+
+    /**
+     * Setter for CertNumber.
+     *
+     * @param string|null $cert_number
+     * @return void
+     */
+    public function setCertNumber(?string $cert_number): void;
+
+    /**
      * Getter for StudentName.
      *
      * @return string|null
      */
     public function getStudentName(): ?string;
-
     /**
      * Setter for StudentName.
      *
@@ -78,19 +93,19 @@ interface CertificateInterface
     public function setStudentName(?string $studentName): void;
 
     /**
-     * Getter for StudentSurName.
+     * Getter for StudentSurname.
      *
      * @return string|null
      */
-    public function getStudentSurName(): ?string;
+    public function getStudentSurname(): ?string;
 
     /**
-     * Setter for StudentSurName.
+     * Setter for StudentSurname.
      *
-     * @param string|null $studentSurMame
+     * @param string|null $studentSurname
      * @return void
      */
-    public function setStudentSurName(?string $studentSurMame): void;
+    public function setStudentSurname(?string $studentSurname): void;
 
     /**
      * Getter for DateValid.

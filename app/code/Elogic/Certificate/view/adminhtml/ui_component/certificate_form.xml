@@ -43,7 +43,7 @@
         <settings>
             <label translate="true">General</label>
         </settings>
-        <field name="certificate_id" sortOrder="0"  formElement="input">
+        <field name="certificate_id" sortOrder="0"  formElement="hidden">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">certificate_id</item>
@@ -55,6 +55,18 @@
                 <dataScope>certificate_id</dataScope>
             </settings>
         </field>
+            <field name="cert_number" sortOrder="0"  formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">cert_number</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">№ Certificate</label>
+                    <dataScope>cert_number</dataScope>
+                </settings>
+            </field>
         <field name="type_id" sortOrder="10" formElement="select">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

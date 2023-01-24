@@ -7,7 +7,7 @@ use Elogic\Certificate\Api\Data\CertificateInterface;
 use Elogic\Certificate\Model\ResourceModel\CertificateResource as ResourceModel;
 use Magento\Framework\Model\AbstractModel;
 
-class Certificate extends AbstractModel implements CertificateInterface
+class  Certificate extends AbstractModel implements CertificateInterface
 {
 
     protected function _construct()
@@ -66,7 +66,7 @@ class Certificate extends AbstractModel implements CertificateInterface
     }
 
     /**
-     * @inheritDoc
+     * @return string|null
      */
     public function getStudentName(): ?string
     {
@@ -84,7 +84,7 @@ class Certificate extends AbstractModel implements CertificateInterface
     /**
      * @inheritDoc
      */
-    public function getStudentSurName(): ?string
+    public function getStudentSurname(): ?string
     {
         return $this->getData(self::STUDENT_SURNAME);
     }
@@ -92,9 +92,9 @@ class Certificate extends AbstractModel implements CertificateInterface
     /**
      * @inheritDoc
      */
-    public function setStudentSurName(?string $studentSurMame): void
+    public function setStudentSurname(?string $studentSurname): void
     {
-        $this->setData(self::STUDENT_SURNAME,$studentSurMame);
+        $this->setData(self::STUDENT_SURNAME,$studentSurname);
     }
 
     /**
@@ -127,5 +127,21 @@ class Certificate extends AbstractModel implements CertificateInterface
     public function setSignature(?string $signature): void
     {
         $this->setData(self::SIGNATURE,$signature);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCertNumber(): ?string
+    {
+        return $this->getData(self::CERT_NUMBER);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setCertNumber(?string $cert_number): void
+    {
+        $this->setData(self::CERT_NUMBER,$cert_number);
     }
 }

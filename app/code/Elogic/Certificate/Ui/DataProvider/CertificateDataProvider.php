@@ -5,6 +5,8 @@ namespace Elogic\Certificate\Ui\DataProvider;
 
 use Elogic\Certificate\Api\Data\CertificateInterface;
 use Elogic\Certificate\Query\Certificate\GetListQuery;
+use Elogic\Certificate\Helper\CertNumber;
+use Exception;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\ReportingInterface;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;
@@ -29,6 +31,10 @@ class CertificateDataProvider extends DataProvider
     private SearchResultFactory $searchResultFactory;
 
     /**
+     * @var CertNumber
+     */
+    private CertNumber $certNumber;
+    /**
      * @var array
      */
     private array $loadedData = [];
@@ -43,6 +49,7 @@ class CertificateDataProvider extends DataProvider
      * @param FilterBuilder $filterBuilder
      * @param GetListQuery $getListQuery
      * @param SearchResultFactory $searchResultFactory
+     * @param CertNumber $certNumber
      * @param array $meta
      * @param array $data
      */
@@ -56,6 +63,7 @@ class CertificateDataProvider extends DataProvider
         FilterBuilder $filterBuilder,
         GetListQuery $getListQuery,
         SearchResultFactory $searchResultFactory,
+        CertNumber $certNumber,
         array $meta = [],
         array $data = []
     ){
@@ -70,6 +78,7 @@ class CertificateDataProvider extends DataProvider
             $meta,
             $data
         );
+        $this->certNumber = $certNumber;
         $this->getListQuery = $getListQuery;
         $this->searchResultFactory = $searchResultFactory;
     }
@@ -96,6 +105,7 @@ class CertificateDataProvider extends DataProvider
      * Get data.
      *
      * @return array
+     * @throws Exception
      */
     public function getData(): array
     {
@@ -103,6 +113,11 @@ class CertificateDataProvider extends DataProvider
             return $this->loadedData;
         }
         $this->loadedData = parent::getData();
+        if(!$this->loadedData['items'])
+        {
+            $this->loadedData['items'][0][CertificateInterface::CERTIFICATE_ID] = 0;
+            $this->loadedData['items'][0][CertificateInterface::CERT_NUMBER] = $this->certNumber->getCertificatedNumber();
+        }
         $itemsById = [];
 
         foreach ($this->loadedData['items'] as $item) {

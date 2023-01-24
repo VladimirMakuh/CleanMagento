@@ -50,6 +50,12 @@
                 <sorting>desc</sorting>
             </settings>
         </column>
+        <column name="cert_number">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">№ Certificate</label>
+            </settings>
+        </column>
         <column name="type_id" component="Magento_Ui/js/grid/columns/select">
             <settings>
                 <options class="Elogic\Certificate\Model\Type\Source\Options"/>
@@ -72,7 +78,7 @@
                 <label translate="true">Name</label>
             </settings>
         </column>
-        <column name="student_sur_name">
+        <column name="student_surname">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Surname</label>

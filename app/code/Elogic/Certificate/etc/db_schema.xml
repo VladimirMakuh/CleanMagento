@@ -28,6 +28,8 @@
                 comment="Certificate Id Column"/>
         <column xsi:type="int" name="type_id" identity="false" unsigned="true" nullable="false" comment="Type Id column"/>
         <column xsi:type="int" name="subject_id" identity="false" unsigned="true" nullable="false" comment="Subject Id column"/>
+        <column xsi:type="varchar" name="cert_number" nullable="true" length="255" comment="Student name column"/>
+
         <column xsi:type="varchar" name="student_name" nullable="false" length="255" comment="Student name column"/>
         <column xsi:type="varchar" name="student_surname" nullable="false" length="255" comment="Student surname column"/>
         <column xsi:type="date" name="date_valid" nullable="false" comment="Date column"/>

@@ -31,7 +31,8 @@
             "student_name": true,
             "student_surname": true,
             "date_valid": true,
-            "signature": true
+            "signature": true,
+            "cert_number": true
         },
         "index": {
             "ELOGIC_CERTIFICATE_CERTIFICATE_ID": true
