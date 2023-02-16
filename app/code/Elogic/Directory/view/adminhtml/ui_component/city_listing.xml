@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">city_listing.city_listing_data_source</item>
+            <item name="deps" xsi:type="string">city_listing.city_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>city_listing_columns</spinner>
+        <deps>
+            <dep>city_listing.city_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="city_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">city_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Elogic_Directory::city</aclResource>
+        <dataProvider class="Elogic\Directory\Ui\DataProvider\CityDataProvider" name="city_listing_data_source">
+            <settings>
+                <requestFieldName>city_id</requestFieldName>
+                <primaryFieldName>city_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="city" />
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">city_listing.city_listing.city_listing_columns.ids</item>
+                </item>
+            </argument>
+        </exportButton>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+        <massaction name="listing_massaction" >
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected city?</message>
+                        <title translate="true">Delete city</title>
+                    </confirm>
+                    <url path="directory/city/massDelete"/>
+                    <type>delte</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="city_listing_columns" sortOrder="10">
+        <selectionsColumn name="ids">
+            <argument xsi:type="array" name="data">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnable" xsi:type="boolean">false</item>
+                    <item name="indexField" xsi:type="string">city_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="city_id" sortOrder="20">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Id</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="city" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">City Name</label>
+            </settings>
+        </column>
+        <column name="country" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Country Name</label>
+            </settings>
+        </column>
+        <column name="iso2_code" sortOrder="40">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Iso2 Code</label>
+            </settings>
+        </column>
+        <column name="iso3_code" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Iso3 Code</label>
+            </settings>
+        </column>
+    </columns>
+</listing>
