@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="GET" url="/V1/directory/cities/:countryCode">
+        <service class="Elogic\Directory\Api\CityAcquirerInterface" method="getCitiesByCountryCode"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/directory/city/:id">
+        <service class="Elogic\Directory\Api\CityRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/directory/city/:id">
+        <service class="Elogic\Directory\Api\CityRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Elogic_Directory::delete"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/directory/city">
+        <service class="Elogic\Directory\Api\CityRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Elogic_Directory::city"/>
+        </resources>
+    </route>
+</routes>

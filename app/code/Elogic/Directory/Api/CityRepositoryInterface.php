@@ -22,16 +22,16 @@ interface CityRepositoryInterface
     public function delete(CityInterface $city): void;
 
     /**
-     * @param int $city_id
+     * @param int $id
      * @return void
      */
-    public function deleteById(int $city_id): void;
+    public function deleteById(int $id): void;
 
     /**
-     * @param int $city_id
+     * @param int $id
      * @return CityInterface
      */
-    public function getById(int $city_id): CityInterface;
+    public function getById(int $id): CityInterface;
 
     /**
      * @param SearchCriteriaInterface $searchCriteria

@@ -72,19 +72,19 @@ class CityRepository implements CityRepositoryInterface
      * @inheritDoc
      * @throws Exception
      */
-    public function deleteById(int $city_id): void
+    public function deleteById(int $id): void
     {
-       $city = $this->getById($city_id);
+       $city = $this->getById($id);
        $this->cityResource->delete($city);
     }
 
     /**
      * @inheritDoc
      */
-    public function getById(int $city_id): CityInterface
+    public function getById(int $id): CityInterface
     {
         $city = $this->cityFactory->create();
-        $this->cityResource->load($city, $city_id);
+        $this->cityResource->load($city, $id);
         return $city;
     }
 

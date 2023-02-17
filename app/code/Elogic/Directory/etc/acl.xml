@@ -11,9 +11,12 @@
                         </resource>
                     </resource>
                 </resource>
-            </resource>
-            <resource id="Elogic_Directory::elogic" title="Elogic" sortOrder="40" translate="true">
-                <resource id="Elogic_Directory::city" title="Cities" translate="true" sortOrder="10"/>
+
+                <resource id="Elogic_Directory::elogic" title="Elogic" sortOrder="40" translate="true">
+                    <resource id="Elogic_Directory::elogic_directory" title="Directory" translate="title" sortOrder="10"/>
+                    <resource id="Elogic_Directory::city" title="Cities" translate="title" sortOrder="20"/>
+                    <resource id="Elogic_Directory::delete" title="Delete" translate="title" sortOrder="30" />
+                </resource>
             </resource>
         </resources>
     </acl>

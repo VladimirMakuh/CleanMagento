@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Elogic\Directory\Model\ResourceModel;
 
+use Elogic\Directory\Api\CityAcquirerInterface;
 use Elogic\Directory\Api\Data\CityInterface;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
-class CityResource extends AbstractDb
+class CityResource extends AbstractDb implements CityAcquirerInterface
 {
     protected const ENTITY_TABLE_NAME = 'elogic_city';
 

@@ -9,22 +9,22 @@
              sortOrder="30"
              resource="Elogic_Directory::elogic"
         />
+        <add id="Elogic_Directory::elogic_directory"
+             title="Directory"
+             translate="title"
+             module="Elogic_Directory"
+             sortOrder="10"
+             resource="Elogic_Directory::elogic_directory"
+             parent="Elogic_Directory::elogic"
+        />
         <add id="Elogic_Directory::city"
              title="City list"
              translate="title"
              module="Elogic_Directory"
-             sortOrder="10"
+             sortOrder="20"
              resource="Elogic_Directory::city"
              action="directory/city/index"
-             parent="Elogic_Directory::elogic"
+             parent="Elogic_Directory::elogic_directory"
          />
-        <add id="Elogic_Directory::config"
-             title="Configuration"
-             module="Elogic_Directory"
-             resource="Elogic_Directory::configuration"
-             sortOrder="50"
-             parent="Elogic_Directory::elogic"
-             action="adminhtml/system_config/edit/section/directory"
-        />
     </menu>
 </config>

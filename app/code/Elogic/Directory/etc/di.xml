@@ -6,6 +6,7 @@
     <preference for="Elogic\Directory\Api\Data\CityInterface" type="Elogic\Directory\Model\City"/>
     <preference for="Elogic\Directory\Api\Data\CitySearchResultsInterface" type="Elogic\Directory\Model\CitySearchResults"/>
     <preference for="Elogic\Directory\Api\CityRepositoryInterface" type="Elogic\Directory\Model\CityRepository"/>
+    <preference for="Elogic\Directory\Api\CityAcquirerInterface" type="Elogic\Directory\Model\ResourceModel\CityResource"/>
 
     <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
         <arguments>
