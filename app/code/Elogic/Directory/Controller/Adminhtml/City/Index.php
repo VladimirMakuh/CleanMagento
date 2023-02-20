@@ -35,7 +35,6 @@ class Index implements HttpGetActionInterface
         $page->setActiveMenu('Elogic_Directory::elogic');
         $page->getConfig()->getTitle()->prepend(__('City List'));
 
-        $uaCities = $this->resource->getCitiesByCountryCode("0000");
         return $page;
     }
 }

@@ -4,6 +4,7 @@
     <module name="Elogic_Directory">
         <sequence>
             <module name="Magento_ImportExport"/>
+            <module name="Magento_Checkout"/>
         </sequence>
     </module>
 </config>
