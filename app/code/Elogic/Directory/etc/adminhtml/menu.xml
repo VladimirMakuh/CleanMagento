@@ -2,20 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Elogic_Directory::elogic"
-             title="Elogic"
-             translate="title"
-             module="Elogic_Directory"
-             sortOrder="30"
-             resource="Elogic_Directory::elogic"
-        />
         <add id="Elogic_Directory::elogic_directory"
              title="Directory"
              translate="title"
              module="Elogic_Directory"
-             sortOrder="10"
+             sortOrder="70"
              resource="Elogic_Directory::elogic_directory"
-             parent="Elogic_Directory::elogic"
+             parent="Magento_Backend::stores"
         />
         <add id="Elogic_Directory::city"
              title="City list"
