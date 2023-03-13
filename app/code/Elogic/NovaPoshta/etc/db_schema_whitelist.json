@@ -1,0 +1,12 @@
+{
+    "quote": {
+        "column": {
+            "delivery_novaposhta": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "delivery_novaposhta": true
+        }
+    }
+}

@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="elogic" translate="label" sortOrder="10">
-            <label>Elogic Internship</label>
+            <label>Elogic</label>
         </tab>
         <section id="novaposhta" sortOrder="20" translate="label" showInDefault="1" showInStore="1" showInWebsite="1">
             <class>separator-top</class>
