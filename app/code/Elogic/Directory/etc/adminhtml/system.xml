@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="elogic" translate="label" sortOrder="10">
+            <label>Elogic</label>
+        </tab>
+        <section id="directory" sortOrder="20" translate="label" showInDefault="1" showInStore="1" showInWebsite="1">
+            <class>separator-top</class>
+            <label>Directory</label>
+            <tab>elogic</tab>
+            <resource>Elogic_Directory::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Configuration</label>
+
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Enable City Dropdown </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="geo_db" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>GeoDB Import Cities</label>
+
+                <field id="geo_db_key" translate="label" type="text" sortOrder="10" showInStore="1" showInWebsite="1" showInDefault="1">
+                    <label>GeoDB Cities API X-RapidAPI-Key</label>
+                </field>
+                <field id="geo_db_host" translate="label" type="text" sortOrder="20" showInStore="1" showInWebsite="1" showInDefault="1">
+                    <label>GeoDB Cities API X-RapidAPI-Host</label>
+                    <comment><![CDATA[Configure a GeoDB, on <a href="https://rapidapi.com/wirefreethought/api/geodb-cities/" target="_blank">GeoDB Cities API</a> to get the X-RapidAPI-Key and X-RapidAPI-Host. You will not be able to use the GeoDB without both the API-Key and API-HOST.]]></comment>
+                </field>
+                <field id="geo_test_connection" translate="label comment tooltip" type="button" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Test Connection</button_label>
+                    <frontend_model>Elogic\Directory\Block\Adminhtml\GeoDB\System\Config\TestConnection</frontend_model>
+                </field>
+
+                <field id="geo_import_type" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Select an import type</label>
+                    <source_model>Elogic\Directory\Model\Config\Source\ImportTypes</source_model>
+                </field>
+
+                <field id="geo_btn_import" translate="label comment tooltip" type="button" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Elogic\Directory\Block\Adminhtml\GeoDB\System\Config\GeoImport</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

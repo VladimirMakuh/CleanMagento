@@ -1,0 +1,21 @@
+<?php
+
+use Elogic\Directory\Block\Checkout\City;
+/** @var City $block */
+?>
+<script>
+    require(
+        [
+            'jquery'
+        ],
+        function($) {
+            $citiesJson = <?=  $block->getCities() ?>;
+        });
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Elogic_Directory/js/city-update": {}
+        }
+    }
+</script>
