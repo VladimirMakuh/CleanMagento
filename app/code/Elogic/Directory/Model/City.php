@@ -66,7 +66,7 @@ class City extends AbstractModel implements CityInterface
      */
     public function setCity(string $name): void
     {
-        $this->getData(self::CITY, $name);
+        $this->setData(self::CITY, $name);
     }
 
     /**

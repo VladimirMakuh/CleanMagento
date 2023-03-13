@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Elogic\Directory\Api;
 
-use Elogic\Directory\Api\Data\CityInterface;
-
 /**
  * City acquirer interface
  */
@@ -16,4 +14,11 @@ interface CityAcquirerInterface
      * @return array
      */
     public function getCitiesByCountryCode(string $countryCode): ?array;
+
+    /**
+     * Check if city unique
+     * @param string $city
+     * @return bool
+     */
+    public function checkUniqueCity(string $city): bool;
 }

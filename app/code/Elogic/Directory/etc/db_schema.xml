@@ -9,8 +9,8 @@
         />
         <column xsi:type="varchar" name="city" nullable="false" length="80"
                 comment="City name"/>
-        <column xsi:type="varchar" name="iso2_code" nullable="false" length="2" comment="City ISO-2 format"/>
-        <column xsi:type="varchar" name="iso3_code" nullable="true" length="3" comment="City ISO-3"/>
+        <column xsi:type="varchar" name="iso2_code" nullable="false" length="2" comment="Country ISO-2 format"/>
+        <column xsi:type="varchar" name="iso3_code" nullable="true" length="3" comment="Country ISO-3"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="city_id"/>
         </constraint>

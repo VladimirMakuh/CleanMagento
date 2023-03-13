@@ -2,11 +2,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-<!--    <preference type="Elogic\Directory\Api\Data\CityInterface" for="Elogic\Directory\Model\City"/>-->
     <preference for="Elogic\Directory\Api\Data\CityInterface" type="Elogic\Directory\Model\City"/>
     <preference for="Elogic\Directory\Api\Data\CitySearchResultsInterface" type="Elogic\Directory\Model\CitySearchResults"/>
     <preference for="Elogic\Directory\Api\CityRepositoryInterface" type="Elogic\Directory\Model\CityRepository"/>
     <preference for="Elogic\Directory\Api\CityAcquirerInterface" type="Elogic\Directory\Model\ResourceModel\CityResource"/>
+    <preference for="Elogic\Directory\Api\ClientInterface" type="Elogic\Directory\Model\GeoClient"/>
 
     <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
         <arguments>
