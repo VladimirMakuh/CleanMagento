@@ -1,0 +1,16 @@
+{
+    "elogic_city": {
+        "column": {
+            "city_id": true,
+            "iso2_code": true,
+            "iso3_code": true,
+            "country_name": true,
+            "city_name": true,
+            "country": true,
+            "city": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
