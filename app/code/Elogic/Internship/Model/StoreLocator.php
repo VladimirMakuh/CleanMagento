@@ -182,3 +182,8 @@ class StoreLocator extends AbstractModel implements StoreLocatorInterface
     }
 
 }
+
+
+/**
+ * Test commit
+ */
