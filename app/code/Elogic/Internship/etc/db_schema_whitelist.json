@@ -15,5 +15,15 @@
             "PRIMARY": true,
             "STORE_LOCATOR_STORE_URL_KEY": true
         }
+    },
+    "quote": {
+        "column": {
+            "pick_up_store": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "pick_up_store": true
+        }
     }
 }

@@ -25,9 +25,9 @@ class ProductStoreStockViewModel implements ArgumentInterface
 
     /**
      * @param $storeId
-     * @return string
+     * @return string|null
      */
-    public function getStoreNameById($storeId): string
+    public function getStoreNameById($storeId)
     {
         return $this->storeLocatorRepository->getById($storeId)->getName();
     }

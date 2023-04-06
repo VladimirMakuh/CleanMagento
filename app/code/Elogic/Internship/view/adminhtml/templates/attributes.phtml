@@ -1,0 +1,32 @@
+<?php $order = $block->getOrder(); ?>
+<?php if ($order && !empty($order->getPickUpStore())) : ?>
+    <section class="admin__page-section order-additional-information">
+        <div class="admin__page-section-title">
+            <strong class="title"><?php echo /* @escapeNotVerified */ __('Pickup in stores'); ?></strong>
+        </div>
+        <div id="<?php echo $block->getHtmlId() ?>"
+             class="admin__page-section-content order-additional-information-container">
+            <div class="admin__page-section-item order-information">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                        <thead>
+                        <tr class="headings">
+                            <th>Product</th>
+                            <th>Available in store</th>
+                        </tr>
+                        </thead>
+                        <?php  $storeList = json_decode($order->getPickUpStore(), false, 512, JSON_THROW_ON_ERROR); ?>
+                       <?php foreach ($storeList as $item): ?>
+                       <tbody>
+                           <tr>
+                               <td class="col-product"><?= $item->ProductName ?></td>
+                               <td class="col-store"><?= $item->PickupStore ?></td>
+                           </tr>
+                       </tbody>
+                       <?php endforeach; ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>

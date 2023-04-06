@@ -3,13 +3,13 @@
         <fieldset class="fieldset">
             <legend data-bind="i18n: 'Choose a product that is available in the stores below: '"></legend>
             <!-- ko foreach: getRegion('custom-checkout-form-fields') -->
-            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- ko templates: getTemplate() --><!-- /ko -->
             <!--/ko-->
             <div class="field-store-stock">
                 <!-- ko foreach: { data: getStoreStock(), as: 'product' } -->
                 <div class="from-checkout-store-select">
-                    <label  data-bind="text:  product.productName, attr: {for: 'product-stock-' + product.productId} "></label>
-                    <select data-bind="attr: {id: 'product-stock-' + product.productId}, attr: {name: 'product-stock-' + product.productId}">
+                    <label  data-bind="text:  product.productName, attr: {for: 'product-stock-' + product.productId, id: 'product-stock-label-' + product.productId} "></label>
+                    <select data-bind="attr: {id: 'product-stock-' + product.productId, name: 'product-stock-' + product.productId}">
                         <!-- ko foreach: { data: product.values, as: 'store' } -->
                         <option data-bind="value: store.storeId , text: store.storeName"></option>
                         <!-- /ko -->
