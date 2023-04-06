@@ -9,7 +9,6 @@ use GuzzleHttp\Client;
 
 class GeoCode implements GeoCodeInterface
 {
-    //test comment for git
     private ConfigProvider $configProvider;
 
     /**

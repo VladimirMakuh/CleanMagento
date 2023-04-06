@@ -1,6 +1,6 @@
 <?php
 /**
- * Product view template
+ * Product view templates
  *
  * @var \Magento\Catalog\Block\Product\View $block
  * @var \Magento\Framework\Escaper $escaper
@@ -14,7 +14,7 @@ $storesList = explode(",", $productStores);
 $storesViewModel = $block->getData('view_model');
 ?>
 
-<?php if ($productStores): ?>
+<?php if ($productStores && $storesViewModel->getStoreNameById((int)$storesList["0"]) !== null): ?>
     <div class="product-store-stock-title">
     <span>
         <?= $escaper->escapeHTML(__('Available in stores: ')) ?>

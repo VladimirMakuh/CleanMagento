@@ -8,6 +8,8 @@ use Elogic\Internship\Api\StoreLocatorRepositoryInterface;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Checkout\Model\Session\Proxy;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class StoreConfigProvider implements ConfigProviderInterface
 {
@@ -40,8 +42,8 @@ class StoreConfigProvider implements ConfigProviderInterface
     }
 
     /**
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function getConfig(): array
     {
@@ -81,6 +83,11 @@ class StoreConfigProvider implements ConfigProviderInterface
         ];
     }
 
+    /**
+     * @param $storeList
+     * @param $object
+     * @return array|string[]
+     */
     public function getValueFromStoreList($storeList, $object): array
     {
         if (!$storeList) {
