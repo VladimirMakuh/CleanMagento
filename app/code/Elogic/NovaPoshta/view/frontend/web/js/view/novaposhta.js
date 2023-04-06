@@ -3,10 +3,9 @@ define([
     'ko',
     'jquery',
     'Magento_Checkout/js/model/quote',
-    'Magento_Tax/js/view/checkout/shipping_method/price',
     'mage/url',
     'Magento_Checkout/js/model/shipping-rate-registry'
-], function (Component, ko, $, quote, price,url, rateRegistry) {
+], function (Component, ko, $, quote,url, rateRegistry) {
     'use strict';
 
     return Component.extend({
@@ -20,19 +19,19 @@ define([
                 }
                 return false;
             }, this);
-
             return this;
         },
 
         initialize: function () {
             this._super();
             // Variable
-            this.data = ko.observableArray();
+            this.dataCity = ko.observableArray();
             this.dataDepartment = ko.observableArray();
             this.dataPostBox = ko.observableArray();
             this.dataStreet = ko.observableArray();
+            this.dataResponse = ko.observableArray();
 
-            //novaposhta store settings
+            //Variable config data
             this.enable = ko.observable();
             this.apiKey = ko.observable();
             this.enableCustomPrice = ko.observable();
@@ -47,15 +46,17 @@ define([
             this.deliveryType = ko.observable("department");
 
             //Visible variable
-            this.getCities();
             this.getNovaPoshtaData();
+            this.getCities();
             //hide options of type of delivery
             this.showCourier = ko.observable(false);
             this.showpostbox = ko.observable(false);
 
             return this;
         },
-
+        /**
+         * Get config data
+         */
         getNovaPoshtaData: function () {
             const data = window.checkoutConfig.novaposhta;
             this.enable = data.enable;
@@ -68,9 +69,10 @@ define([
             }
             else
             {
-                this.priceDepartment = 50;
-                this.pricePostBox = 50;
-                this.priceCourier = 85;
+                // Todo: if price not set, get it using api and send parameters of product
+                this.priceDepartment = 70;
+                this.pricePostBox = 70;
+                this.priceCourier = 105;
             }
         },
         /**
@@ -82,90 +84,107 @@ define([
          * @constructor
          */
         MakeRequest: function(model,method, properties = null) {
-            const self = this;
+            let responseData = null;
 
-            const errorMessage = $("#delivery-error-message-department");
-            const errorMessagePostBox = $("#delivery-error-message-postbox");
             $.ajax({
                 url: 'https://api.novaposhta.ua/v2.0/json/',
                 dataType: 'json',
                 type: 'POST',
+                async: false,
                 data: JSON.stringify({
                     'modelName': model,
                     'calledMethod': method,
                     'apiKey': this.apiKey,
                     'methodProperties': properties
                 }),
-                showLoader: false
-            }).done(function(data) {
-                switch (method)
-                {
-                    case "getCities" :
-                        self.data(data.data);
-                        break;
+                showLoader: false,
 
-                    case "getWarehouses" :
-                        self.dataDepartment.removeAll();
-                        self.dataPostBox.removeAll();
-
-                        if(data.data.length ===0)
-                        {
-                            errorMessagePostBox.show();
-                            errorMessage.show();
-                            break;
-                        }
-                        //
-                        for (const department in data.data) {
-                            if(data.data[department].CategoryOfWarehouse === "Postomat") {
-                                self.dataPostBox.push(data.data[department]);
-                            }
-                            else {
-                                self.dataDepartment.push(data.data[department]);
-                            }
-                        }
-                        // Show error message
-                        if(self.dataDepartment().length > 0)
-                        {
-                            errorMessage.hide();
-                            if(self.dataPostBox().length > 0) {
-                                errorMessagePostBox.hide();
-                            }
-                            else{
-                                errorMessagePostBox.show();
-                            }
-                        }
-                        else{
-                            errorMessage.show();
-                        }
-                        break;
-
-                    case "getStreet" :
-                        if(data.data.length !== 0)
-                        {
-                            self.dataStreet(data.data);
-                            break;
-                        }
-                        self.dataStreet(null);
-                        break;
-                }})
+                success: function (data) {
+                    if(data.data.length !== 0) {
+                        responseData = data.data;
+                    }
+                }
+            });
+            return responseData;
         },
+        /**
+         * Get list of cities
+         */
         getCities:function (){
-            return  this.MakeRequest('Address','getCities');
+            let cities = this.MakeRequest('Address','getCities');
+            this.dataCity(cities);
         },
+        /**
+         * Call method
+         * @param obj
+         * @param event
+         */
         getDepartments: function (obj, event){
             this.selectedCity = event.target.value;
             this.getWarehouses();
             this.getStreet();
         },
+        /**
+         * Get list of departments and postboxes
+         */
         getWarehouses: function (){
-            let property = {'CityRef': this.selectedCity};
-            return this.MakeRequest('Address', 'getWarehouses', property);
-        },
-        getStreet: function () {
+            const _self = this;
+
+            const errMessageDepartment = $("#delivery-error-message-department");
+            const errMessagePostBox = $("#delivery-error-message-postbox");
 
             let property = {'CityRef': this.selectedCity};
-            return this.MakeRequest('Address', 'getStreet', property);
+            let warehouses = this.MakeRequest('Address', 'getWarehouses', property);
+
+            _self.dataDepartment.removeAll();
+            _self.dataPostBox.removeAll();
+
+            // If response data is null, show error message
+            if(!warehouses)
+            {
+                errMessagePostBox.show();
+                errMessageDepartment.show();
+            }
+            // Package data for Post Box and Department
+            for (const department in warehouses) {
+                if(warehouses[department].CategoryOfWarehouse === "Postomat") {
+                    _self.dataPostBox.push(warehouses[department]);
+                }
+                else {
+                    _self.dataDepartment.push(warehouses[department]);
+                }
+            }
+            // Check if list of departments is not empty
+            if(_self.dataDepartment().length > 0)
+            {
+                errMessageDepartment.hide();
+                //Check if list of post boxes is not empty
+                if(_self.dataPostBox().length > 0) {
+                    errMessagePostBox.hide();
+                }
+                else{
+                    //if empty show message
+                    errMessagePostBox.show();
+                }
+            }
+            else{
+                //if empty show message
+                errMessageDepartment.show();
+            }
         },
+        /**
+         * Get list of Streets
+         */
+        getStreet: function () {
+            let property = {'CityRef': this.selectedCity};
+            let streets = this.MakeRequest('Address', 'getStreet', property);
+            this.dataStreet(streets);
+        },
+        /**
+         *
+         * @param obj
+         * @param event
+         */
         selectTypeDelivery: function (obj, event){
             switch (event.target.value) {
                 case 'postbox' :
@@ -174,21 +193,21 @@ define([
                     $("#list-courier").hide();
                     $(".delivery-novaposhta-postbox").show();
                     this.setNovaPoshtaPrice(this.priceDepartment);
-                    break;
+                break;
                 case 'courier' :
                     $("#courier").prop('checked', true);
                     $(".delivery-novaposhta-postbox").hide();
                     $(".delivery-novaposhta-department").hide();
                     $("#list-courier").show();
                     this.setNovaPoshtaPrice(this.priceCourier);
-                    break;
+                break;
                 case 'department' :
                     $("#department").prop('checked', true);
                     $(".delivery-novaposhta-postbox").hide();
                     $("#list-courier").hide();
                     $(".delivery-novaposhta-department").show();
                     this.setNovaPoshtaPrice(this.priceDepartment);
-                    break;
+                break;
             }
         },
 
