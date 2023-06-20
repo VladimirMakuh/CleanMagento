@@ -17,10 +17,10 @@ class Delete extends AbstractMapping
                 $mappingModel = $this->mappingFactory->create();
                 $this->mappingResource->load($mappingModel, $id);
                 if (!$mappingModel->getId()) {
-                    throw new \Exception(__(__("Mapping template with Id %1 doesn't exit.", $id)));
+                    throw new \Exception(__(__("Mapping templates with Id %1 doesn't exit.", $id)));
                 }
                 $this->mappingResource->delete($mappingModel);
-                $this->messageManager->addSuccessMessage(__("The Mapping template with Id is %1 was deleted.", $id));
+                $this->messageManager->addSuccessMessage(__("The Mapping templates with Id is %1 was deleted.", $id));
             } else {
                 $this->messageManager->addSuccessMessage(__("Something when wrong. Please try again."));
             }

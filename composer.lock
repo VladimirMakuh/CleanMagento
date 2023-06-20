@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c1b819a8f6203912ba9cc7b6f19a23c",
+    "content-hash": "0d0fb2d1672e8a03def3da3dde5dd4e6",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -5236,6 +5236,60 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "mageme/module-core",
+            "version": "1.0.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.mageme.com/dist/mageme/module-core/mageme-module-core-1.0.9.zip"
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-fileinfo": "*",
+                "ext-intl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-zip": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MageMe\\Core\\": ""
+                }
+            },
+            "license": [
+                "https://mageme.com/license/"
+            ],
+            "description": "Core Module"
+        },
+        {
+            "name": "mageme/module-webforms-3",
+            "version": "3.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.mageme.com/dist/mageme/module-webforms-3/mageme-module-webforms-3-3.0.0.zip"
+            },
+            "require": {
+                "mageme/module-core": "^1.0.1"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MageMe\\WebForms\\": ""
+                }
+            },
+            "license": [
+                "https://mageme.com/license/"
+            ],
+            "description": "WebForms Pro 3 - Form Builder for Magento 2"
         },
         {
             "name": "magento/adobe-ims",
@@ -28580,6 +28634,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
+        "ext-curl": "*",
         "ext-json": "*"
     },
     "platform-dev": [],

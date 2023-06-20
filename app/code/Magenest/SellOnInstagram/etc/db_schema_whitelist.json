@@ -22,7 +22,8 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "MAGENEST_INSTAGRAM_MAPPING_MAGENTO_ATTRIBUTE_TEMPLATE_ID": true
+            "MAGENEST_INSTAGRAM_MAPPING_MAGENTO_ATTRIBUTE_TEMPLATE_ID": true,
+            "MAGENEST_INSTAGRAM_MAPPING_MAGENTO_ATTRIBUTE_FB_ATTRIBUTE": true
         }
     },
     "magenest_instagram_sync_history": {

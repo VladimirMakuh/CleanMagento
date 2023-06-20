@@ -45,7 +45,7 @@ class FeedLog extends Extended
      */
     public function getGridUrl()
     {
-        return $this->getUrl('instagramshop/*/template', ['_current' => true]);
+        return $this->getUrl('instagramshop/*/templates', ['_current' => true]);
     }
 
     /**

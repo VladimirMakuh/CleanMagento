@@ -13,7 +13,7 @@ class Index extends AbstractMapping
     {
         try {
             $resultPage = $this->resultPageFactory->create();
-            $this->initPage($resultPage)->getConfig()->getTitle()->prepend(__('Mapping Attributes'));
+            $this->initPage($resultPage)->getConfig()->getTitle()->prepend(__('Mapping NovaPoshtaDetails'));
             return $resultPage;
         } catch (\Exception $e) {
             $this->logger->debug($e->getMessage());

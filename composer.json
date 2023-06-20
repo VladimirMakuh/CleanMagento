@@ -20,7 +20,10 @@
     },
     "version": "2.4.3",
     "require": {
+        "ext-curl": "*",
         "ext-json": "*",
+        "mageme/module-core": "^1.0",
+        "mageme/module-webforms-3": "3.0.0",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~1.1",
         "magento/module-bundle-sample-data": "100.4.*",
@@ -44,8 +47,7 @@
         "magento/module-wishlist-sample-data": "100.4.*",
         "magento/product-community-edition": "2.4.3",
         "magento/sample-data-media": "100.4.*",
-        "rltsquare/city-dropdown": "^1.0",
-      "ext-curl": "*"
+        "rltsquare/city-dropdown": "^1.0"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -100,16 +102,20 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "repositories": [
-        {
+    "repositories": {
+        "mageme": {
+            "type": "composer",
+            "url": "https://repo.mageme.com"
+        },
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
         },
-        {
-          "type": "artifact",
-          "url": "artifacts/"
+        "1": {
+            "type": "artifact",
+            "url": "artifacts/"
         }
-    ],
+    },
     "extra": {
         "magento-force": "override"
     }

@@ -181,7 +181,7 @@ define([
             this.dataStreet(streets);
         },
         /**
-         *
+         * Select delivery type
          * @param obj
          * @param event
          */
@@ -212,7 +212,7 @@ define([
         },
 
         /**
-         * Set new text price on storefront novaposhta
+         * Set new text price on storefront
          * @param price
          */
         setNovaPoshtaPrice: function (price) {

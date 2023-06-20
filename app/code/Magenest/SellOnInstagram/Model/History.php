@@ -313,7 +313,7 @@ class History extends AbstractModel
     }
 
     /**
-     * Initialize history resource model
+     * Initialize history resource Model
      *
      * @return void
      */

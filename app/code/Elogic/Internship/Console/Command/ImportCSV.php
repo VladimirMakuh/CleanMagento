@@ -114,5 +114,6 @@ class ImportCSV extends Command
             $output->writeln('Invalid CSV');
             $output->writeln($e->getMessage());
         }
+        //test comment
     }
 }
