@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Elogic\Internship\Block\Adminhtml;
 
 use Magento\Backend\Block\Template;
-use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Backend\Block\Template\Context;
+use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 
 class Attributes extends Template
@@ -14,23 +15,23 @@ class Attributes extends Template
      */
     private OrderRepositoryInterface $orderRepository;
 
+    /**
+     * @param Context $context
+     * @param array $data
+     * @param OrderRepositoryInterface $orderRepository
+     */
     public function __construct(
         Template\Context $context,
-        array $data = [],
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
+        array $data = []
     ){
         $this->orderRepository = $orderRepository;
         parent::__construct($context, $data);
     }
 
-    public function getOrder()
+    public function getOrder(): OrderInterface
     {
-        try {
-            $orderId = $this->getRequest()->getParam('order_id');
-            return $this->orderRepository->get($orderId);
-        } catch (NoSuchEntityException $e)
-        {
-            return false;
-        }
+        $orderId = $this->getRequest()->getParam('order_id');
+        return $this->orderRepository->get($orderId);
     }
 }

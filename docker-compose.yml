@@ -11,7 +11,7 @@ services:
   php-apache:
     container_name: magento.local
     # EXECUTION_ENVIRONMENT - 'development' or 'production'
-    image: defaultvalue/php:7.4-${EXECUTION_ENVIRONMENT}
+    image: defaultvalue/php:8.1-${EXECUTION_ENVIRONMENT}
     # In case you need your own Dockerfile. Dockerfile example:
     # ARG EXECUTION_ENVIRONMENT
     # FROM defaultvalue/php:7.3-${EXECUTION_ENVIRONMENT}
