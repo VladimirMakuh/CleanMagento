@@ -17,7 +17,7 @@ class Edit extends AbstractMapping
             if ($id) {
                 $this->mappingResource->load($mappingModel, $id);
                 if (!$mappingModel->getId()) {
-                    $this->messageManager->addErrorMessage(__('This Mapping template no longer exists.'));
+                    $this->messageManager->addErrorMessage(__('This Mapping templates no longer exists.'));
                     /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
                     $resultRedirect = $this->resultRedirectFactory->create();
                     return $resultRedirect->setPath('*/*/index');

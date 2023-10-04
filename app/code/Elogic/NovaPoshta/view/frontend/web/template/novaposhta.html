@@ -1,110 +1,110 @@
 <!-- ko if:enable  -->
-<form class="novaposhta-form-delivery" >
-<div id="shipping-delivery-form" class="shipping-delivery" data-bind="visible: showNovaposhta()">
-    <div class="title">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20" alt="Nova Poshta logo" class="novaposhta-logo"><path fill="#ED1C24" fill-rule="evenodd" d="M11.828 11.978c.318 0 .31.17.31.436-.027 0 0 0 0 2.918 0 .318.312.53.576.53h1.43c.237 0 .346.127.212.27l-.054.048-3.597 3.66a.532.532 0 01-.372.16.515.515 0 01-.303-.103l-.066-.058-3.597-3.66c-.214-.16-.108-.317.156-.317h1.656c.24 0 .535-.172.592-.438l.01-.093v-2.917c0-.237 0-.397.185-.43l.078-.006h2.784zM4.406 5.84c.067.032.108.125.108.26v7.743c0 .135-.041.215-.108.241-.051.02-.12.008-.201-.039l-.064-.041c-.005-.006-.145-.149-3.65-3.714-.187-.14-.208-.41-.063-.617L.491 9.6l3.65-3.66c.109-.105.201-.131.265-.099zm12.225.15l.047.056L20.18 9.6c.181.188.202.463.06.633l-.06.058-3.502 3.608c-.078.106-.155.132-.214.1-.059-.033-.096-.126-.096-.26V6.152c0-.132.037-.212.096-.232.047-.015.106.006.167.07zM10.461 0l.245.1 3.701 3.619c.142.183.115.327-.078.357l-.08.006h-1.535c-.264 0-.556.213-.556.472-.119 0 0-.006 0 2.68 0 .23-.104.42-.35.459l-.1.007H9.203c-.264 0-.4-.207-.4-.466.01 0 0-2.264 0-2.686 0-.422-.479-.466-.746-.466h-1.64c-.234 0-.303-.124-.204-.297l.046-.067L9.964.1l.242-.1h.254z"></path></svg>
-        <div class="step-title title-novaposhta"
-             translate="'Nova Poshta'"
-             data-role="title"></div>
-    </div>
+<form class="novaposhta-form-delivery">
+    <div id="shipping-delivery-form" class="shipping-delivery" data-bind="visible: showNovaposhta()">
+        <div class="title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20" alt="Nova Poshta logo" class="novaposhta-logo"><path fill="#ED1C24" fill-rule="evenodd" d="M11.828 11.978c.318 0 .31.17.31.436-.027 0 0 0 0 2.918 0 .318.312.53.576.53h1.43c.237 0 .346.127.212.27l-.054.048-3.597 3.66a.532.532 0 01-.372.16.515.515 0 01-.303-.103l-.066-.058-3.597-3.66c-.214-.16-.108-.317.156-.317h1.656c.24 0 .535-.172.592-.438l.01-.093v-2.917c0-.237 0-.397.185-.43l.078-.006h2.784zM4.406 5.84c.067.032.108.125.108.26v7.743c0 .135-.041.215-.108.241-.051.02-.12.008-.201-.039l-.064-.041c-.005-.006-.145-.149-3.65-3.714-.187-.14-.208-.41-.063-.617L.491 9.6l3.65-3.66c.109-.105.201-.131.265-.099zm12.225.15l.047.056L20.18 9.6c.181.188.202.463.06.633l-.06.058-3.502 3.608c-.078.106-.155.132-.214.1-.059-.033-.096-.126-.096-.26V6.152c0-.132.037-.212.096-.232.047-.015.106.006.167.07zM10.461 0l.245.1 3.701 3.619c.142.183.115.327-.078.357l-.08.006h-1.535c-.264 0-.556.213-.556.472-.119 0 0-.006 0 2.68 0 .23-.104.42-.35.459l-.1.007H9.203c-.264 0-.4-.207-.4-.466.01 0 0-2.264 0-2.686 0-.422-.479-.466-.746-.466h-1.64c-.234 0-.303-.124-.204-.297l.046-.067L9.964.1l.242-.1h.254z"></path></svg>
+            <div class="step-title title-novaposhta"
+                 translate="'Nova Poshta'"
+                 data-role="title"></div>
+        </div>
 
-    <ul class="list-novaposhta">
-        <li>
-            <div class="delivery-type">
-                <label class="radio" for="department">
-                    <input type="radio"  name="deliverytype" value="department" id="department"
-                           data-bind="checked: deliveryType, event: { change: selectTypeDelivery}" >
-                    In Department
-                </label>
-                <label class="radio" for="post-box" >
-                    <input type="radio" name="deliverytype" value="postbox" id="post-box"
-                           data-bind="checked: deliveryType, event: { change: selectTypeDelivery}">
-                    In Post Box
-                </label>
-                <label class="radio" for="courier">
-                    <input type="radio"  name="deliverytype" value="courier" id="courier"
-                           data-bind="checked: deliveryType, event: { change: selectTypeDelivery}">
-                    Courier
-                </label>
-            </div>
-        </li>
-        <li>
-            <fieldset class="delivery-novaposhta-city">
-                <div>
-                    <label for="delivery-city">City</label>
-                    <select name="delivery-city"
-                            id="delivery-city"
-                            class="novaposhta-field"
-                            data-bind="options: dataCity, optionsText: 'Description', optionsValue: 'Ref', event: { change: getDepartments}">
-                    </select>
+        <ul class="list-novaposhta">
+            <li>
+                <div class="delivery-type">
+                    <label class="radio" for="department">
+                        <input type="radio"  name="deliverytype" value="department" id="department"
+                               data-bind="checked: deliveryType, event: { change: selectTypeDelivery}" >
+                        In Department
+                    </label>
+                    <label class="radio" for="post-box" >
+                        <input type="radio" name="deliverytype" value="postbox" id="post-box"
+                               data-bind="checked: deliveryType, event: { change: selectTypeDelivery}">
+                        In Post Box
+                    </label>
+                    <label class="radio" for="courier">
+                        <input type="radio"  name="deliverytype" value="courier" id="courier"
+                               data-bind="checked: deliveryType, event: { change: selectTypeDelivery}">
+                        Courier
+                    </label>
                 </div>
-            </fieldset>
-        </li>
-        <li>
-            <fieldset class="delivery-novaposhta-department">
-                <div>
-                    <label for="delivery-departmant">Departman</label>
-                    <select name="delivery-city"
-                            id="delivery-departmant"
-                            class="novaposhta-field"
-                            data-bind="options: dataDepartment, optionsText: 'Description', optionsValue: 'Ref'">
-                    </select>
-                    <div class="validation-error" id="delivery-error-message-department">
-                        <span class="error-message">There are no branches in the selected city</span>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="delivery-novaposhta-postbox" data-bind="visible: showpostbox">
+            </li>
+            <li>
+                <fieldset class="delivery-novaposhta-city">
                     <div>
-                        <label for="delivery-post-box">Post Box</label>
+                        <label for="delivery-city">City</label>
                         <select name="delivery-city"
-                                id="delivery-post-box"
+                                id="delivery-city"
                                 class="novaposhta-field"
-                                data-bind="options: dataPostBox, optionsText: 'Description', optionsValue: 'Ref' ">
+                                data-bind="options: dataCity, optionsText: 'Description', optionsValue: 'Ref', event: { change: getDepartments}">
                         </select>
-                        <div class="validation-error" id="delivery-error-message-postbox">
-                            <span class="error-message">There are no post boxes in the selected city</span>
+                    </div>
+                </fieldset>
+            </li>
+            <li>
+                <fieldset class="delivery-novaposhta-department">
+                    <div>
+                        <label for="delivery-departmant">Departman</label>
+                        <select name="delivery-city"
+                                id="delivery-departmant"
+                                class="novaposhta-field"
+                                data-bind="options: dataDepartment, optionsText: 'Description', optionsValue: 'Ref'">
+                        </select>
+                        <div class="validation-error" id="delivery-error-message-department">
+                            <span class="error-message">There are no branches in the selected city</span>
                         </div>
                     </div>
-            </fieldset>
-        </li>
-        <li id="list-courier" data-bind="visible: showCourier">
-            <fieldset class="delivery-novaposhta-street">
-                <div>
-                    <label for="delivery-courier-street">Street</label>
-                    <select name="delivery-courier-street"
-                            id="delivery-courier-street"
-                            class="novaposhta-field"
-                            data-bind="options: dataStreet, optionsText: 'Description', optionsValue: 'Ref' ">
-                    </select>
-                </div>
-            </fieldset>
-            <fieldset class="delivery-novaposhta-house">
-                <div>
-                    <label>
-                        House
-                        <input type="text"
-                               minlength="3"
-                               maxlength="100"
-                               id="delivery-courier-house"
-                               class="novaposhta-field">
-                    </label>
-                </div>
-            </fieldset>
-            <fieldset class="delivery-novaposhta-flat ">
-                <div>
-                    <label>
-                        Flat
-                        <input type="text"
-                               minlength="3"
-                               maxlength="100"
-                               id="delivery-courier-flat"
-                               class="novaposhta-field" >
-                    </label>
-                </div>
-            </fieldset>
-        </li>
-    </ul>
-</div>
+                </fieldset>
+                <fieldset class="delivery-novaposhta-postbox" data-bind="visible: showpostbox">
+                        <div>
+                            <label for="delivery-post-box">Post Box</label>
+                            <select name="delivery-city"
+                                    id="delivery-post-box"
+                                    class="novaposhta-field"
+                                    data-bind="options: dataPostBox, optionsText: 'Description', optionsValue: 'Ref' ">
+                            </select>
+                            <div class="validation-error" id="delivery-error-message-postbox">
+                                <span class="error-message">There are no post boxes in the selected city</span>
+                            </div>
+                        </div>
+                </fieldset>
+            </li>
+            <li id="list-courier" data-bind="visible: showCourier">
+                <fieldset class="delivery-novaposhta-street">
+                    <div>
+                        <label for="delivery-courier-street">Street</label>
+                        <select name="delivery-courier-street"
+                                id="delivery-courier-street"
+                                class="novaposhta-field"
+                                data-bind="options: dataStreet, optionsText: 'Description', optionsValue: 'Ref' ">
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset class="delivery-novaposhta-house">
+                    <div>
+                        <label>
+                            House
+                            <input type="text"
+                                   minlength="3"
+                                   maxlength="100"
+                                   id="delivery-courier-house"
+                                   class="novaposhta-field">
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset class="delivery-novaposhta-flat ">
+                    <div>
+                        <label>
+                            Flat
+                            <input type="text"
+                                   minlength="3"
+                                   maxlength="100"
+                                   id="delivery-courier-flat"
+                                   class="novaposhta-field" >
+                        </label>
+                    </div>
+                </fieldset>
+            </li>
+        </ul>
+    </div>
 </form>
 <!-- /ko -->

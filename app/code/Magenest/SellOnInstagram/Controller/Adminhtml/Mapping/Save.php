@@ -23,12 +23,12 @@ class Save extends AbstractMapping
                 $templateCollection->addFieldToFilter('name', $params['template_name'])
                     ->addFieldToFilter('id', ['neq' => $id]);
                 if ($templateCollection->getSize() > 0) {
-                    throw new \Exception('The template name has already exited');
+                    throw new \Exception('The templates name has already exited');
                 } else {
                     $mappingModel->setName($params['template_name']);
                 }
             } else {
-                throw new \Exception('The template name is required');
+                throw new \Exception('The templates name is required');
             }
             $mappingModel->setContentTemplate($this->jsonFramework->serialize($templateContent));
             $this->mappingResource->save($mappingModel);

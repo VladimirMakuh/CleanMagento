@@ -58,7 +58,7 @@ class Edit extends Template
         $this->jsLayout['components']['template_attributes'] = [
             'component' => 'Magenest_SellOnInstagram/js/mapping/mapping',
             'displayArea' => 'template_attributes',
-            'template' => 'Magenest_SellOnInstagram/view/mapping/mapping'
+            'templates' => 'Magenest_SellOnInstagram/view/mapping/mapping'
         ];
         $this->jsLayout['components']['template_attributes']['config']['attributes'] = [
             'fb_attribute' => $this->mappingAttribute->getFbShoppingAttribute(),
