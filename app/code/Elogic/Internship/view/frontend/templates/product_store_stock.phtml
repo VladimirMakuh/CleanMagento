@@ -10,7 +10,7 @@
 <?php
 $_product = $block->getProduct();
 $productStores = $_product->getData("store_in_stock");
-$storesList = explode(",", $productStores);
+$storesList = explode(",", (string) $productStores);
 $storesViewModel = $block->getData('view_model');
 ?>
 
