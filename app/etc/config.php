@@ -347,12 +347,7 @@ return [
         'Magento_WishlistGraphQl' => 1,
         'Magento_WishlistSampleData' => 1,
         'ADM_QuickDevBar' => 1,
-        'Cart2Quote_Quotation' => 1,
-        'Cart2Quote_Features' => 1,
-        'Cart2Quote_License' => 1,
-        'Cart2Quote_AutoProposal' => 1,
         'Elogic_Directory' => 0,
-        'Elogic_Icon' => 1,
         'Elogic_Internship' => 1,
         'Elogic_NovaPoshta' => 0,
         'MageMe_Core' => 1,
@@ -365,11 +360,9 @@ return [
         'Magenest_SellOnInstagram' => 1,
         'Mageplaza_Core' => 1,
         'Mageplaza_GoogleTagManager' => 1,
-        'Magetrend_CustomField' => 0,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'RLTSquare_CityDropdown' => 1,
-        'Temando_ShippingRemover' => 1,
-        'Yu_NovaPoshta' => 1
+        'Temando_ShippingRemover' => 1
     ]
 ];

@@ -22,8 +22,6 @@
     "require": {
         "ext-curl": "*",
         "ext-json": "*",
-        "cart2quote/module-autoproposal": "^1.1",
-        "cart2quote/module-quotation-encoded": "^4.3",
         "magefan/module-blog": "^2.10",
         "mageme/module-core": "^1.0",
         "mageme/module-webforms-3": "3.0.0",
@@ -108,21 +106,9 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories": {
-        "mageme": {
-            "type": "composer",
-            "url": "https://repo.mageme.com"
-        },
         "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
-        },
-        "1": {
-            "type": "artifact",
-            "url": "artifacts/"
-        },
-        "mageplaza": {
-            "type": "composer",
-            "url": "https://repo.mageplaza.com"
         }
     },
     "extra": {
